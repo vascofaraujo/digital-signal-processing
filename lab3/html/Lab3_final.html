@@ -1,0 +1,679 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>Lab3_final</title><meta name="generator" content="MATLAB 8.5"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2021-05-03"><meta name="DC.source" content="Lab3_final.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h2>Contents</h2><div><ul><li><a href="#2">Parte 1</a></li><li><a href="#3">Quest&atilde;o a)</a></li><li><a href="#5">Quest&atilde;o b)</a></li><li><a href="#7">Quest&atilde;o c)</a></li><li><a href="#9">Parte 2</a></li><li><a href="#10">Quest&atilde;o a)</a></li><li><a href="#12">Quest&atilde;o b)</a></li><li><a href="#14">Quest&atilde;o c)</a></li><li><a href="#16">Quest&atilde;o d)</a></li><li><a href="#20">Quest&atilde;o f)</a></li><li><a href="#22">Parte3</a></li><li><a href="#23">Quest&atilde;o a)</a></li><li><a href="#24">Quest&atilde;o b)</a></li><li><a href="#26">Quest&atilde;o c)</a></li><li><a href="#28">Quest&atilde;o d)</a></li><li><a href="#30">Quest&atilde;o e)</a></li><li><a href="#32">Quest&atilde;o f)</a></li></ul></div><pre class="codeinput"><span class="comment">%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</span>
+<span class="comment">%   Terceiro trabalho de laborat&oacute;rio de PDS</span>
+<span class="comment">%                   2020/2021</span>
+<span class="comment">%</span>
+<span class="comment">%             Turno de 3&ordf;feira 14h</span>
+<span class="comment">%</span>
+<span class="comment">%                 Grupo 38</span>
+<span class="comment">%             Jo&atilde;o Silva 90803</span>
+<span class="comment">%            Vasco Ara&uacute;jo 90817</span>
+<span class="comment">%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</span>
+
+clc;
+close <span class="string">all</span>;
+clearvars;
+</pre><h2>Parte 1<a name="2"></a></h2><h2>Quest&atilde;o a)<a name="3"></a></h2><pre class="codeinput">[x, Fs] = audioread(<span class="string">'fugee.wav'</span>);
+
+soundsc(x);
+</pre><p>Reproduzindo o sinal podemos ouvir uma m&uacute;sica com bastante ru&iacute;do, sendo o mais aud&iacute;vel uma crepita&ccedil;&atilde;o constante. Isto &eacute; algo comum em discos de vinil e &eacute; causado por acumula&ccedil;&atilde;o est&aacute;tica ou riscos no disco.</p><h2>Quest&atilde;o b)<a name="5"></a></h2><pre class="codeinput">x_length = length(x);
+x1 = round(x_length/4);
+x2 = round(x_length/2);
+x3 = round(3*x_length/4);
+
+
+figure(1);
+plot(x(1:x1));
+title(<span class="string">'First quarter of the signal'</span>);
+xlabel(<span class="string">'n'</span>);
+ylabel(<span class="string">'Amplitude [V]'</span>);
+
+figure(2);
+plot(x(x1+1:x2));
+title(<span class="string">'Second quarter of the signal'</span>);
+xlabel(<span class="string">'n'</span>);
+ylabel(<span class="string">'Amplitude [V]'</span>);
+
+figure(3);
+plot(x(x2+1:x3));
+title(<span class="string">'Third quarter of the signal'</span>);
+xlabel(<span class="string">'n'</span>);
+ylabel(<span class="string">'Amplitude [V]'</span>);
+
+figure(4);
+plot(x(x3+1:x_length));
+title(<span class="string">'Fourth quarter of the signal'</span>);
+xlabel(<span class="string">'n'</span>);
+ylabel(<span class="string">'Amplitude [V]'</span>);
+</pre><img vspace="5" hspace="5" src="Lab3_final_01.png" alt=""> <img vspace="5" hspace="5" src="Lab3_final_02.png" alt=""> <img vspace="5" hspace="5" src="Lab3_final_03.png" alt=""> <img vspace="5" hspace="5" src="Lab3_final_04.png" alt=""> <p>Olhando para o plot podemos claramente ver o ru&iacute;do, observando picos de amplitude pela can&ccedil;&atilde;o inteira. Podemos tamb&eacute;m reparar numa 'parede' de ru&iacute;do, de -0.4 a 0.4V e que come&ccedil;a quando a bateria entra na m&uacute;sica.</p><h2>Quest&atilde;o c)<a name="7"></a></h2><pre class="codeinput">X = fft(x);
+XShift = fftshift(X);
+
+P = abs(XShift);
+f = ((-x_length/2):1:(x_length/2)-1)*Fs/x_length;
+
+
+figure(6);
+semilogy(f, P);
+title(<span class="string">'Magnitude spectrum'</span>);
+xlabel(<span class="string">'Frequency [Hz]'</span>);
+ylabel(<span class="string">'dB'</span>);
+</pre><img vspace="5" hspace="5" src="Lab3_final_05.png" alt=""> <p>Podemos verificar que a magnitude est&aacute; espelhada sobre o eixo das ordenadas. Existe uma componente DC acentuada e verifica-se que &agrave; medida que a frequ&ecirc;ncia vai aumentando a magnitude diminui.</p><h2>Parte 2<a name="9"></a></h2><h2>Quest&atilde;o a)<a name="10"></a></h2><pre class="codeinput">[B, A] = butter(10, (pi/2)/pi);
+
+[H,W] = freqz(B,A);
+
+figure(6);
+freqz(B,A);
+title(<span class="string">'Magnitude of Butterworth filter'</span>);
+
+figure(7);
+plot(W, abs(H));
+title(<span class="string">'Linear magnitude plot of Butterworth filter'</span>);
+xlabel(<span class="string">'Frequency [Hz]'</span>);
+ylabel(<span class="string">'Amplitude'</span>);
+</pre><img vspace="5" hspace="5" src="Lab3_final_06.png" alt=""> <img vspace="5" hspace="5" src="Lab3_final_07.png" alt=""> <p>Podemos ver que o filtro de Butterworth se comporta como espect&aacute;vel de um filtro passa-baixo. O filtro n&atilde;o afecta as baixas frequ&ecirc;ncias, apenas come&ccedil;ando a atenua&ccedil;&atilde;o nos 0.5*pi Hz. A atenua&ccedil;&atilde;o &eacute; progressiva, ou seja, quanto mais a frequ&ecirc;ncia aumenta mais o filtro corta o sinal. A mesma informa&ccedil;&atilde;o pode ser observada no plot linear, em que a frequ&ecirc;ncia pi/2 corresponde ao valor sqrt(2)/2, que &eacute; o mesmo que dizer -3dB, que &eacute; o valor no qual se mede a frequ&ecirc;ncia de corte. Confirma-se assim o funcionamento do filtro.</p><h2>Quest&atilde;o b)<a name="12"></a></h2><pre class="codeinput">x = audioread(<span class="string">'fugee.wav'</span>);
+x_length = length(x);
+
+
+y = filter(B,A, x);
+</pre><p>Para Fs = 8000, a frequ&ecirc;ncia de cut-off &eacute; de f = pi/2 * (Fs/(2*pi)) <a href="=">=</a> f = Fs/4 = 2 kHz. A difere&ccedil;a entre tempo cont&iacute;nuo e discreto &eacute; que um ponto em cont&iacute;nuo correspondente a Fs/2 &eacute; mapeado para pi/2 em tempo discreto, e por isso existe varia&ccedil;&atilde;o na frequ&ecirc;ncia de cut-off.</p><h2>Quest&atilde;o c)<a name="14"></a></h2><pre class="codeinput">figure(8);
+plot(x); hold <span class="string">on</span>;
+plot(y);
+title(<span class="string">'Original and filtered signals'</span>);
+legend(<span class="string">'Original'</span>, <span class="string">'Filtered'</span>);
+xlabel(<span class="string">'n'</span>);
+ylabel(<span class="string">'Amplitude [V]'</span>);
+
+figure(9);
+plot(x(1205500:1205500+400)); hold <span class="string">on</span>;
+plot(y(1205500:1205500+400));
+title(<span class="string">'Original and filtered signals zoomed in'</span>);
+legend(<span class="string">'Original'</span>, <span class="string">'Filtered'</span>);
+xlabel(<span class="string">'n'</span>);
+ylabel(<span class="string">'Amplitude [V]'</span>);
+</pre><img vspace="5" hspace="5" src="Lab3_final_08.png" alt=""> <img vspace="5" hspace="5" src="Lab3_final_09.png" alt=""> <p>Observando a Figura 8 podemos ver que a maioria do sinal original foi atenuado no sinal filtrado. Todos os picos de amplitude tiveram a sua amplitude diminu&iacute;da. Na Figura 9 podemos confirmar isto. Por exemplo, no sinal original pode-se ver um claro pico de amplitude que foi bastante reduzido no sinal filtrado.</p><h2>Quest&atilde;o d)<a name="16"></a></h2><pre class="codeinput">X = fft(x);
+XShift = fftshift(X );
+PX = abs(XShift);
+fx = ((-x_length/2):1:(x_length/2)-1)*Fs/x_length;
+
+Y = fft(y);
+YShift = fftshift(Y);
+PY = abs(YShift);
+fy = ((-x_length/2):1:(x_length/2)-1)*Fs/x_length;
+
+figure(10);
+semilogy(fx, PX); hold <span class="string">on</span>;
+semilogy(fy, PY);
+title(<span class="string">'Magnitude spectra of original and filtered signals'</span>);
+legend(<span class="string">'Original'</span>, <span class="string">'Filtered'</span>);
+xlabel(<span class="string">'n'</span>);
+ylabel(<span class="string">'Amplitude [V]'</span>);
+</pre><img vspace="5" hspace="5" src="Lab3_final_10.png" alt=""> <p>Uma vez que o espectro &eacute; espelhado podemo-nos focar apenas na parte positiva do espectro. Para baixas frequ&ecirc;ncias o espectro n&atilde;o foi alterado, no entanto para frequ&ecirc;ncia altas o espectro foi bastante atenuado, como seria espect&aacute;vel de um filtro passa-baixo.</p><p>Quest&atilde;o e)</p><pre class="codeinput">soundsc(y);
+</pre><p>Ouvindo o sinal filtrado y podemos observar tr&ecirc;s coisas: 1) o barulho de clique foi reduzido, pois a frequ&ecirc;ncia alta do sinal foi atenuada, deixando apenas o ru&iacute;do de baixa frequ&ecirc;ncia 2) os instrumentos de baixa frequ&ecirc;ncia est&atilde;o mais aud&iacute;veis, tais como a bateria ou o baixo 3) o som no geral perdeu qualidade pois o filtro n&atilde;o opera apenas no ru&iacute;do mas sim no sinal inteiro. Por isso, as componentes de alta frequ&ecirc;ncia da m&uacute;sica tamb&eacute;m foram afectadas</p><h2>Quest&atilde;o f)<a name="20"></a></h2><pre class="codeinput">[B2, A2] = butter(10, (pi/16)/pi);
+y2 = filter(B2,A2, x);
+
+[B3, A3] = butter(10, (9*pi/10)/pi);
+y3 = filter(B3,A3, x);
+
+Y2 = fft(y2);
+Y2Shift = fftshift(Y2);
+PY2 = abs(Y2Shift);
+fy2 = ((-x_length/2):1:(x_length/2)-1)*Fs/x_length;
+
+Y3 = fft(y3);
+Y3Shift = fftshift(Y3);
+PY3 = abs(Y3Shift);
+fy3 = ((-x_length/2):1:(x_length/2)-1)*Fs/x_length;
+
+soundsc(y2);
+soundsc(y3);
+
+figure(11);
+semilogy(fy2, PY2); hold <span class="string">on</span>;
+semilogy(fy3, PY3);
+title(<span class="string">'Magnitude spectra of y2 and y3'</span>);
+legend(<span class="string">'y2'</span>, <span class="string">'y3'</span>);figure(10);
+semilogy(fx, PX); hold <span class="string">on</span>;
+semilogy(fy, PY);
+title(<span class="string">'Magnitude spectra of original and filtered signals'</span>);
+legend(<span class="string">'Original'</span>, <span class="string">'Filtered'</span>);
+xlabel(<span class="string">'n'</span>);
+ylabel(<span class="string">'Amplitude [V]'</span>);
+</pre><img vspace="5" hspace="5" src="Lab3_final_11.png" alt=""> <img vspace="5" hspace="5" src="Lab3_final_12.png" alt=""> <p>Ouvindo o sinal y2, obtido com frequ&ecirc;ncia de cut-off em pi/16, podemos ver que a m&uacute;sica foi bastante alterada. Devido &agrave; frequ&ecirc;ncia de cut-off ser t&atilde;o baixa, os &uacute;nicos sons que n&atilde;o foram filtrados s&atilde;o os de muito baixa frequ&ecirc;ncia. Logo quase s&oacute; se ouve o baixo e a bateria. O sinal y3 &eacute; o oposto. Com uma frequ&ecirc;ncia de cut-off de 0.9pi, o ru&iacute;do na m&uacute;sica aumentou, mas tamb&eacute;m aumentou a qualidade do som no geral. Isto pois existe um trade-off em que quanto mais alta for a frequ&ecirc;ncia de cut-off, maior qualidade ter&aacute; a m&uacute;sica, mas menos vai filtrar o ru&iacute;do.</p><h2>Parte3<a name="22"></a></h2><h2>Quest&atilde;o a)<a name="23"></a></h2><p>Este filtro &eacute; n&atilde;o causal, &eacute; est&aacute;vel, &eacute; n&atilde;o linear, e &eacute; invariante no tempo. Em termos de causalidade, &eacute; f&aacute;cil de mostrar que este filtro n&atilde;o &eacute; causal uma vez que requere informa&ccedil;&atilde;o de instantes futuros para calcular a sa&iacute;da no instante atual. Tomando por exemplo o filtro de ordem 3, para calcular a sa&iacute;da no instante 2 &eacute; necess&aacute;rio fazer a mediana dos instantes 1, 2 e 3 (y[2] = median(x[1], x[2], x[3])). No que toca &agrave; estabilidade, esta classe de filtros &eacute; est&aacute;vel uma vez que a sa&iacute;da apenas tende para valores infinitos se o input for tamb&eacute;m para infinito. Uma vez que a sa&iacute;da &eacute; sempre um dos valores de entrada, logo &eacute; sempre limitada pelos valores da entrada. Para provar que o filtro n&atilde;o &eacute; linear basta demonstrar que n&atilde;o possui a propriedade da sobreposi&ccedil;&atilde;o, isto &eacute;, se y1 = medfilt1(x1) e y2 = medfilt1(x2) ent&atilde;o y1+y2 = medfilt1(x1+x2). Assumindo que estamos a usar um filtro de ordem 3 e que x1 = [1, 2, 3] e que x2 = [5, 4, 6] vem que y1 = 2 e y2 = 5. Assim y1+y2 deveria ser igual a medfilt1(x1+x2) = medfilt1([6, 6, 9]) = 6, enquanto que y1+y2 = 7. A propriedade da sobreposi&ccedil;&atilde;o n&atilde;o &eacute; satisfeita uma vez que h&aacute; um passo de ordena&ccedil;&atilde;o nestes filtros e esse passo &eacute; n&atilde;o linear. Quanto &agrave; invari&acirc;ncia no tempo, &eacute; f&aacute;cil de demonstrar que &eacute; invariante no tempo. Um sistema diz-se invariante no tempo se y[n] = H(x[n]) e y[n-1] = H(x[n-1]). Utilizando um filtro de ordem 3 para o exemplo, sabe-se que y[n] = median(x[n-1], x[n], x[n+1]). Substituindo n por n-1 obtem-se median(x[n-2], x[n-1], x[n]) que &eacute; igual a y[n-1], confirmando assim esta propriedade.</p><h2>Quest&atilde;o b)<a name="24"></a></h2><pre class="codeinput"><span class="comment">%Calculo do sinal filtrado</span>
+x_f = medfilt1(x, 3);
+
+plot(x);
+hold <span class="string">on</span>;
+plot(x_f);
+
+xlabel(<span class="string">'Tempo'</span>);
+ylabel(<span class="string">'Amplitude'</span>);
+title(<span class="string">'Compara&ccedil;&atilde;o do sinal original e do filtrado'</span>);
+legend(<span class="string">'original'</span>, <span class="string">'filtrado'</span>);
+
+figure();
+<span class="comment">%Agora zoomed in</span>
+M = 400;
+T = 1205500;
+plot((T:T+M), x(T:T+M));
+hold <span class="string">on</span>
+plot((T:T+M), x_f(T:T+M));
+
+xlabel(<span class="string">'Tempo'</span>);
+ylabel(<span class="string">'Amplitude'</span>);
+title(<span class="string">'Compara&ccedil;&atilde;o do sinal original e do filtrado zoom-in'</span>);
+legend(<span class="string">'original'</span>, <span class="string">'filtrado'</span>);
+</pre><pre class="codeoutput">Warning: Negative data ignored 
+</pre><img vspace="5" hspace="5" src="Lab3_final_13.png" alt=""> <img vspace="5" hspace="5" src="Lab3_final_14.png" alt=""> <p>Como acontecia na sec&ccedil;&atilde;o 2, o plot do sinal completo n&atilde;o &eacute; f&aacute;cil de analizar, usando para esse efeito o segundo plot que se foca numa &aacute;rea muito mais restrita onde apenas se tem 1 perturba&ccedil;&atilde;o. Como se pode ver, no sinal filtrado a perturba&ccedil;&atilde;o &eacute; completamente eliminada. No entanto, &eacute; tamb&eacute;m poss&iacute;vel verificar a perda de detalhe que ocorre devido ao tipo de filtro usado. Quando maior a ordem do filtro menos detalhe &eacute; preservado.</p><h2>Quest&atilde;o c)<a name="26"></a></h2><pre class="codeinput"><span class="comment">%Calcula a fft do sinal filtrado</span>
+X_f = fft(x_f);
+X_f = fftshift(X_f);
+freq = (-x_length/2:x_length/2-1)*Fs/x_length;
+
+figure();
+semilogy(freq, P);
+hold <span class="string">on</span>;
+semilogy(freq, abs(X_f));
+xlabel(<span class="string">'Frequ&ecirc;ncia (log) [Hz]'</span>);
+ylabel(<span class="string">'Magnitude'</span>);
+title(<span class="string">'Compara&ccedil;&atilde;o da magnitude do sinal original e filtrado'</span>);
+legend(<span class="string">'Original'</span>, <span class="string">'Filtrado'</span>);
+</pre><img vspace="5" hspace="5" src="Lab3_final_15.png" alt=""> <p>Ao analizar este plot pode-se ver que, ao contr&aacute;rio do que sucedia na sec&ccedil;&atilde;o 2, n&atilde;o h&aacute; um corte completo na amplitude a altas frequ&ecirc;ncias. Isto resulta num sinal menos perturbado pelo processo de filtragem, sendo que nas baixas frequ&ecirc;ncias o sinal filtrado &eacute; basicamente igual ao original e nas altas frequ&ecirc;ncias h&aacute; apenas uma pequena atenua&ccedil;&atilde;o da magnitude.</p><h2>Quest&atilde;o d)<a name="28"></a></h2><pre class="codeinput">soundsc(x_f);
+</pre><p>Ao ouvir o sinal consegue-se perceber que, ao contr&aacute;rio do que acontecia com o filtro passa-baixo, as perturba&ccedil;&otilde;es foram eliminadas completamente. No entanto, o sinal filtrado parece ter mais ru&iacute;do comparando com o original. Isto vai ao encontro do resultado obtido em 3b, em que o sinal filtrado perdia detalhe, resultando no ru&iacute;do que se ouve.</p><h2>Quest&atilde;o e)<a name="30"></a></h2><pre class="codeinput"><span class="comment">%Calculo do sinal filtrado</span>
+x_f = medfilt1(x, 9);
+soundsc(x_f);
+
+figure();
+<span class="comment">%Agora zoomed in</span>
+M = 400;
+T = 1205500;
+plot((T:T+M), x(T:T+M));
+hold <span class="string">on</span>
+plot((T:T+M), x_f(T:T+M));
+
+xlabel(<span class="string">'Tempo'</span>);
+ylabel(<span class="string">'Amplitude'</span>);
+title(<span class="string">'Compara&ccedil;&atilde;o do sinal original e do filtrado zoom-in'</span>);
+legend(<span class="string">'original'</span>, <span class="string">'filtrado'</span>);
+
+X_f = fft(x_f);
+X_f = fftshift(X_f);
+freq = (-x_length/2:x_length/2-1)*Fs/x_length;
+
+figure();
+semilogy(freq, P);
+hold <span class="string">on</span>;
+semilogy(freq, abs(X_f));
+xlabel(<span class="string">'Frequ&ecirc;ncia (log) [Hz]'</span>);
+ylabel(<span class="string">'Magnitude'</span>);
+title(<span class="string">'Compara&ccedil;&atilde;o da magnitude do sinal original e filtrado'</span>);
+legend(<span class="string">'Original'</span>, <span class="string">'Filtrado'</span>);
+</pre><img vspace="5" hspace="5" src="Lab3_final_16.png" alt=""> <img vspace="5" hspace="5" src="Lab3_final_17.png" alt=""> <p>Experimentando filtros de ordem superior a 3 confirmamos que quanto maior a ordem maior ser&aacute; o ru&iacute;do no sinal filtrado, como seria de esperar. Com ordens menores que 3 (ordem 2) este tipo de perturba&ccedil;&atilde;o n&atilde;o &eacute; eliminado uma vez que para cada instante da sa&iacute;da &eacute; feita a m&eacute;dia do sinal de entrada nesse instante com o sinal de entrada no instante anterior. Assim os "picos" de amplitude n&atilde;o seriam eliminados, seriam apenas atenuados. O filtro de terceira ordem &eacute; assim o que funciona melhor para eliminar as perturba&ccedil;&otilde;es deste sinal. Comparando o sinal filtrado com o original no dominio do tempo confirmamos que quanto maior a ordem do filtro maior a perda de detalhe no sinal resultante. Comparando o plot obtido com ordem 9 com o obtido com ordem 3 consegue-se ver que o de ordem 3 segue mais fielmente o sinal original. Comparando tamb&eacute;m as respostas em frequ&ecirc;ncias observa-se que n&atilde;o houve uma altera&ccedil;&atilde;o not&aacute;vel para ordens diferentes, o que faz sentido uma vez que este tipo de filtros n&atilde;o opera no dominio da frequ&ecirc;ncia, operando nas amostras do sinal em si.</p><h2>Quest&atilde;o f)<a name="32"></a></h2><p>Para remover este tipo de ru&iacute;do cheg&aacute;mos &agrave; conclus&atilde;o que o filtro da mediana &eacute; o melhor, face ao filtro passa-baixo. Comparando os sinais resultantes do processo de filtragem para cada um, pode-se confirmar que no do filtro passa-baixo ainda se ouvem as perturba&ccedil;&otilde;es e o sinal perde qualidade, enquanto que no filtro da mediana o ru&iacute;do &eacute; eliminado havendo apenas uma pequena, quase impercet&iacute;vel para o filtro de ordem 3, descida na qualidade do sinal. Uma das causas que pensamos que contribui para isto &eacute; o facto do filtro passa-baixo operar no dominio da frequ&ecirc;ncia, enquanto que o filtro da mediana opera sobre o sinal original em si. Este &uacute;ltimo (usando ordem 3 para exemplificar), para cada instante de tempo usa 3 amostras do sinal e ordena-as, escolhendo depois o valor central como valor final. Como as perturba&ccedil;&otilde;es s&atilde;o valores muito mais elevados em valor absoluto que o sinal e s&atilde;o pontuais (ocupam apenas 1 instante de tempo), isto garante que est&atilde;o sempre nas extremidades das 3 amostras escolhidas, sendo assim completamente eliminadas. Por outro lado, o filtro passa-baixo opera sobre a frequ&ecirc;ncia, diminuindo a magnitude das componentes acima da frequ&ecirc;ncia de corte. Analisando o plot do sinal filtrado da sec&ccedil;&atilde;o 2 confirmamos que tal acontece, as perturba&ccedil;&otilde;es t&ecirc;m amplitude menor do que no sinal original. No entanto n&atilde;o s&atilde;o eliminadas e surge o problema adicional de as componentes de alta frequ&ecirc;ncia serem perdidas. Em suma, para este tipo de perturba&ccedil;&otilde;es, o filtro da mediana &eacute; melhor do que o filtro passa-baixo.</p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2015a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%   Terceiro trabalho de laboratório de PDS
+%                   2020/2021
+%               
+%             Turno de 3ªfeira 14h
+%                 
+%                 Grupo 38
+%             João Silva 90803
+%            Vasco Araújo 90817
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+clc;
+close all;
+clearvars;
+
+%% Parte 1
+%% Questão a)
+[x, Fs] = audioread('fugee.wav');
+
+soundsc(x);
+
+%% 
+% Reproduzindo o sinal podemos ouvir uma música com bastante ruído, sendo
+% o mais audível uma crepitação constante. Isto é algo comum em discos
+% de vinil e é causado por acumulação estática ou riscos no disco.
+
+%% Questão b)
+
+x_length = length(x);
+x1 = round(x_length/4);
+x2 = round(x_length/2);
+x3 = round(3*x_length/4);
+
+
+figure(1);
+plot(x(1:x1));
+title('First quarter of the signal');
+xlabel('n'); 
+ylabel('Amplitude [V]');
+
+figure(2);
+plot(x(x1+1:x2));
+title('Second quarter of the signal');
+xlabel('n'); 
+ylabel('Amplitude [V]');
+
+figure(3);
+plot(x(x2+1:x3));
+title('Third quarter of the signal');
+xlabel('n'); 
+ylabel('Amplitude [V]');
+
+figure(4);
+plot(x(x3+1:x_length));
+title('Fourth quarter of the signal');
+xlabel('n'); 
+ylabel('Amplitude [V]');
+
+%% 
+% Olhando para o plot podemos claramente ver o ruído, observando
+% picos de amplitude pela canção inteira. Podemos também reparar numa
+% 'parede' de ruído, de -0.4 a 0.4V e que começa quando a bateria entra na
+% música.
+
+
+
+%% Questão c)
+X = fft(x);
+XShift = fftshift(X);
+
+P = abs(XShift);   
+f = ((-x_length/2):1:(x_length/2)-1)*Fs/x_length;
+
+
+figure(6);
+semilogy(f, P);
+title('Magnitude spectrum');
+xlabel('Frequency [Hz]');
+ylabel('dB');
+
+%% 
+% Podemos verificar que a magnitude está espelhada sobre o eixo das
+% ordenadas. Existe uma componente DC acentuada e verifica-se
+% que à medida que a frequência vai aumentando a magnitude diminui.
+%% Parte 2
+
+%% Questão a)
+[B, A] = butter(10, (pi/2)/pi);
+
+[H,W] = freqz(B,A);
+
+figure(6);
+freqz(B,A);
+title('Magnitude of Butterworth filter');
+
+figure(7);
+plot(W, abs(H));
+title('Linear magnitude plot of Butterworth filter');
+xlabel('Frequency [Hz]');
+ylabel('Amplitude');
+
+%% 
+% Podemos ver que o filtro de Butterworth se comporta como espectável de um
+% filtro passa-baixo. O filtro não afecta as baixas frequências, apenas
+% começando a atenuação nos 0.5*pi Hz. A atenuação é progressiva, ou seja,
+% quanto mais a frequência aumenta mais o filtro corta o sinal. A mesma
+% informação pode ser observada no plot linear, em que a frequência pi/2 
+% corresponde ao valor sqrt(2)/2, que é o mesmo que dizer -3dB, que é o valor 
+% no qual se mede a frequência de corte. Confirma-se assim o funcionamento do 
+% filtro.
+
+%% Questão b)
+x = audioread('fugee.wav');
+x_length = length(x);
+
+
+y = filter(B,A, x);
+
+%% 
+% Para Fs = 8000, a frequência de cut-off é de f = pi/2 * (Fs/(2*pi)) <=> f = Fs/4 = 2 kHz.
+% A difereça entre tempo contínuo e discreto é que um ponto em contínuo
+% correspondente a Fs/2 é mapeado para pi/2 em tempo discreto, e por 
+% isso existe variação na frequência de cut-off. 
+
+
+%% Questão c)
+figure(8);
+plot(x); hold on;
+plot(y);
+title('Original and filtered signals');
+legend('Original', 'Filtered');
+xlabel('n');
+ylabel('Amplitude [V]');
+
+figure(9);
+plot(x(1205500:1205500+400)); hold on;
+plot(y(1205500:1205500+400));
+title('Original and filtered signals zoomed in');
+legend('Original', 'Filtered');
+xlabel('n');
+ylabel('Amplitude [V]');
+
+%% 
+% Observando a Figura 8 podemos ver que a maioria do sinal original foi atenuado 
+% no sinal filtrado. Todos os picos de amplitude tiveram a sua amplitude diminuída.
+% Na Figura 9 podemos confirmar isto. Por exemplo, no sinal original pode-se
+% ver um claro pico de amplitude que foi bastante reduzido no sinal filtrado.
+
+
+%% Questão d)
+X = fft(x);
+XShift = fftshift(X );
+PX = abs(XShift);   
+fx = ((-x_length/2):1:(x_length/2)-1)*Fs/x_length;
+
+Y = fft(y);
+YShift = fftshift(Y);
+PY = abs(YShift);   
+fy = ((-x_length/2):1:(x_length/2)-1)*Fs/x_length;
+
+figure(10);
+semilogy(fx, PX); hold on;
+semilogy(fy, PY);
+title('Magnitude spectra of original and filtered signals');
+legend('Original', 'Filtered');
+xlabel('n');
+ylabel('Amplitude [V]');
+
+%% 
+% Uma vez que o espectro é espelhado podemo-nos focar apenas na parte
+% positiva do espectro. Para baixas frequências o espectro não foi
+% alterado, no entanto para frequência altas o espectro foi bastante
+% atenuado, como seria espectável de um filtro passa-baixo.
+
+%%
+% Questão e)
+
+soundsc(y);
+
+%% 
+% Ouvindo o sinal filtrado y podemos observar três coisas:
+% 1) o barulho de clique foi reduzido, pois a frequência alta do sinal foi
+% atenuada, deixando apenas o ruído de baixa frequência
+% 2) os instrumentos de baixa frequência estão mais audíveis, tais como a
+% bateria ou o baixo
+% 3) o som no geral perdeu qualidade pois o filtro não opera apenas no
+% ruído mas sim no sinal inteiro. Por isso, as componentes de alta
+% frequência da música também foram afectadas
+
+
+
+%% Questão f)
+[B2, A2] = butter(10, (pi/16)/pi);
+y2 = filter(B2,A2, x);
+
+[B3, A3] = butter(10, (9*pi/10)/pi);
+y3 = filter(B3,A3, x);
+
+Y2 = fft(y2);
+Y2Shift = fftshift(Y2);
+PY2 = abs(Y2Shift);   
+fy2 = ((-x_length/2):1:(x_length/2)-1)*Fs/x_length;
+
+Y3 = fft(y3);
+Y3Shift = fftshift(Y3);
+PY3 = abs(Y3Shift);   
+fy3 = ((-x_length/2):1:(x_length/2)-1)*Fs/x_length;
+
+soundsc(y2);
+soundsc(y3);
+
+figure(11);
+semilogy(fy2, PY2); hold on;
+semilogy(fy3, PY3);
+title('Magnitude spectra of y2 and y3');
+legend('y2', 'y3');figure(10);
+semilogy(fx, PX); hold on;
+semilogy(fy, PY);
+title('Magnitude spectra of original and filtered signals');
+legend('Original', 'Filtered');
+xlabel('n');
+ylabel('Amplitude [V]');
+
+
+%% 
+% Ouvindo o sinal y2, obtido com frequência de cut-off em pi/16, podemos
+% ver que a música foi bastante alterada. Devido à frequência de cut-off
+% ser tão baixa, os únicos sons que não foram filtrados são os de muito
+% baixa frequência. Logo quase só se ouve o baixo e a bateria.
+% O sinal y3 é o oposto. Com uma frequência de cut-off de 0.9pi, o ruído na
+% música aumentou, mas também aumentou a qualidade do som no geral. Isto
+% pois existe um trade-off em que quanto mais alta for a frequência de
+% cut-off, maior qualidade terá a música, mas menos vai filtrar o ruído.
+
+%% Parte3
+%% Questão a)
+% Este filtro é não causal, é estável, é não linear, e é invariante no
+% tempo.
+% Em termos de causalidade, é fácil de mostrar que este filtro não é causal
+% uma vez que requere informação de instantes futuros para calcular a saída
+% no instante atual. Tomando por exemplo o filtro de ordem 3, para calcular
+% a saída no instante 2 é necessário fazer a mediana dos instantes 1, 2 e 3
+% (y[2] = median(x[1], x[2], x[3])).
+% No que toca à estabilidade, esta classe de filtros é estável uma vez que
+% a saída apenas tende para valores infinitos se o input for também para
+% infinito. Uma vez que a saída é sempre um dos valores de entrada, logo é
+% sempre limitada pelos valores da entrada.
+% Para provar que o filtro não é linear basta demonstrar que não possui a
+% propriedade da sobreposição, isto é, se y1 = medfilt1(x1) e y2 =
+% medfilt1(x2) então y1+y2 = medfilt1(x1+x2). Assumindo que estamos a usar
+% um filtro de ordem 3 e que x1 = [1, 2, 3] e que x2 = [5, 4, 6] vem que y1
+% = 2 e y2 = 5. Assim y1+y2 deveria ser igual a medfilt1(x1+x2) =
+% medfilt1([6, 6, 9]) = 6, enquanto que y1+y2 = 7. A propriedade da
+% sobreposição não é satisfeita uma vez que há um passo de ordenação nestes
+% filtros e esse passo é não linear.
+% Quanto à invariância no tempo, é fácil de demonstrar que é invariante no
+% tempo. Um sistema diz-se invariante no tempo se y[n] = H(x[n]) e y[n-1] =
+% H(x[n-1]). Utilizando um filtro de ordem 3 para o exemplo, sabe-se que 
+% y[n] = median(x[n-1], x[n], x[n+1]). Substituindo n por n-1 obtem-se
+% median(x[n-2], x[n-1], x[n]) que é igual a y[n-1], confirmando assim esta
+% propriedade.
+
+%% Questão b)
+
+%Calculo do sinal filtrado 
+x_f = medfilt1(x, 3);
+
+plot(x);
+hold on;
+plot(x_f);
+
+xlabel('Tempo');
+ylabel('Amplitude');
+title('Comparação do sinal original e do filtrado');
+legend('original', 'filtrado');
+
+figure();
+%Agora zoomed in
+M = 400;
+T = 1205500;
+plot((T:T+M), x(T:T+M));
+hold on
+plot((T:T+M), x_f(T:T+M));
+
+xlabel('Tempo');
+ylabel('Amplitude');
+title('Comparação do sinal original e do filtrado zoom-in');
+legend('original', 'filtrado');
+
+%% 
+% Como acontecia na secção 2, o plot do sinal completo não é fácil de
+% analizar, usando para esse efeito o segundo plot que se foca numa área
+% muito mais restrita onde apenas se tem 1 perturbação. Como se pode ver,
+% no sinal filtrado a perturbação é completamente eliminada. No entanto, é
+% também possível verificar a perda de detalhe que ocorre devido ao tipo de
+% filtro usado. Quando maior a ordem do filtro menos detalhe é preservado.
+%% Questão c)
+%Calcula a fft do sinal filtrado
+X_f = fft(x_f);
+X_f = fftshift(X_f);
+freq = (-x_length/2:x_length/2-1)*Fs/x_length;
+
+figure();
+semilogy(freq, P);
+hold on;
+semilogy(freq, abs(X_f));
+xlabel('Frequência (log) [Hz]');
+ylabel('Magnitude');
+title('Comparação da magnitude do sinal original e filtrado');
+legend('Original', 'Filtrado');
+
+%% 
+% Ao analizar este plot pode-se ver que, ao contrário do que sucedia na
+% secção 2, não há um corte completo na amplitude a altas frequências. Isto
+% resulta num sinal menos perturbado pelo processo de filtragem, sendo que
+% nas baixas frequências o sinal filtrado é basicamente igual ao original e
+% nas altas frequências há apenas uma pequena atenuação da magnitude.
+%% Questão d)
+
+soundsc(x_f);
+
+%% 
+% Ao ouvir o sinal consegue-se perceber que, ao contrário do que acontecia
+% com o filtro passa-baixo, as perturbações foram eliminadas completamente.
+% No entanto, o sinal filtrado parece ter mais ruído comparando com o
+% original. Isto vai ao encontro do resultado obtido em 3b, em que o sinal
+% filtrado perdia detalhe, resultando no ruído que se ouve.
+%% Questão e)
+
+%Calculo do sinal filtrado
+x_f = medfilt1(x, 9);
+soundsc(x_f);
+
+figure();
+%Agora zoomed in
+M = 400;
+T = 1205500;
+plot((T:T+M), x(T:T+M));
+hold on
+plot((T:T+M), x_f(T:T+M));
+
+xlabel('Tempo');
+ylabel('Amplitude');
+title('Comparação do sinal original e do filtrado zoom-in');
+legend('original', 'filtrado');
+
+X_f = fft(x_f);
+X_f = fftshift(X_f);
+freq = (-x_length/2:x_length/2-1)*Fs/x_length;
+
+figure();
+semilogy(freq, P);
+hold on;
+semilogy(freq, abs(X_f));
+xlabel('Frequência (log) [Hz]');
+ylabel('Magnitude');
+title('Comparação da magnitude do sinal original e filtrado');
+legend('Original', 'Filtrado');
+
+%% 
+% Experimentando filtros de ordem superior a 3 confirmamos que quanto maior
+% a ordem maior será o ruído no sinal filtrado, como seria de esperar. Com
+% ordens menores que 3 (ordem 2) este tipo de perturbação não é eliminado 
+% uma vez que para cada instante da saída é feita a média do sinal de
+% entrada nesse instante com o sinal de entrada no instante anterior. Assim
+% os "picos" de amplitude não seriam eliminados, seriam apenas atenuados.
+% O filtro de terceira ordem é assim o que funciona melhor para
+% eliminar as perturbações deste sinal. Comparando o sinal filtrado com o
+% original no dominio do tempo confirmamos que quanto maior a ordem do filtro 
+% maior a perda de detalhe no sinal resultante. Comparando o plot obtido com 
+% ordem 9 com o obtido com ordem 3 consegue-se ver que o de ordem 3 segue mais 
+% fielmente o sinal original. Comparando também as respostas em frequências 
+% observa-se que não houve uma alteração notável para ordens diferentes, o 
+% que faz sentido uma vez que este tipo de filtros não opera no dominio da 
+% frequência, operando nas amostras do sinal em si.
+
+%% Questão f)
+% Para remover este tipo de ruído chegámos à conclusão que o filtro da
+% mediana é o melhor, face ao filtro passa-baixo. Comparando os sinais
+% resultantes do processo de filtragem para cada um, pode-se confirmar que
+% no do filtro passa-baixo ainda se ouvem as perturbações e o sinal perde
+% qualidade, enquanto que no filtro da mediana o ruído é eliminado havendo
+% apenas uma pequena, quase impercetível para o filtro de ordem 3, descida
+% na qualidade do sinal. Uma das causas que pensamos que contribui para
+% isto é o facto do filtro passa-baixo operar no dominio da frequência,
+% enquanto que o filtro da mediana opera sobre o sinal original em si. Este
+% último (usando ordem 3 para exemplificar), para cada instante de tempo
+% usa 3 amostras do sinal e ordena-as, escolhendo depois o valor central
+% como valor final. Como as perturbações são valores muito mais elevados em
+% valor absoluto que o sinal e são pontuais (ocupam apenas 1 instante de tempo),
+% isto garante que estão sempre nas extremidades das 3 amostras escolhidas,
+% sendo assim completamente eliminadas. Por outro lado, o filtro
+% passa-baixo opera sobre a frequência, diminuindo a magnitude das
+% componentes acima da frequência de corte. Analisando o plot do sinal
+% filtrado da secção 2 confirmamos que tal acontece, as perturbações têm
+% amplitude menor do que no sinal original. No entanto não são eliminadas e
+% surge o problema adicional de as componentes de alta frequência serem
+% perdidas. Em suma, para este tipo de perturbações, o filtro da mediana é
+% melhor do que o filtro passa-baixo.
+
+##### SOURCE END #####
+--></body></html>

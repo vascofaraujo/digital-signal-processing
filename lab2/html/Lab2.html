@@ -1,0 +1,469 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>Lab2</title><meta name="generator" content="MATLAB 8.5"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2021-04-13"><meta name="DC.source" content="Lab2.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h2>Contents</h2><div><ul><li><a href="#2">1a</a></li><li><a href="#3">1b</a></li><li><a href="#5">1c</a></li><li><a href="#7">1d</a></li><li><a href="#8">1e</a></li><li><a href="#10">1f</a></li><li><a href="#12">2a</a></li><li><a href="#13">2b</a></li><li><a href="#14">2c</a></li><li><a href="#15">2d</a></li><li><a href="#17">2e</a></li></ul></div><pre class="codeinput"><span class="comment">%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</span>
+<span class="comment">%   Segundo trabalho de laborat&oacute;rio de PDS</span>
+<span class="comment">%                   2020/2021</span>
+<span class="comment">%</span>
+<span class="comment">%             Turno de 3&ordf;feira 14h</span>
+<span class="comment">%</span>
+<span class="comment">%                 Grupo 38</span>
+<span class="comment">%             Jo&atilde;o Silva 90803</span>
+<span class="comment">%            Vasco Ara&uacute;jo 90817</span>
+<span class="comment">%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</span>
+close <span class="string">all</span>;
+clear;
+</pre><h2>1a<a name="2"></a></h2><pre class="codeinput"><span class="comment">%Constants</span>
+M = 512;
+w0 = 5.2* 2*pi/M;
+
+n = 0:M-1;
+
+x = 5*cos(w0*n + 1) + 2*cos(2*w0*n + 2) + 3*cos(5*w0*n + 3);
+</pre><h2>1b<a name="3"></a></h2><pre class="codeinput">plot(n, x);
+xlabel(<span class="string">'Tempo discreto n'</span>);
+ylabel(<span class="string">'x(n)'</span>);
+title(<span class="string">'Sinal original'</span>);
+xlim([0, M-1]);
+</pre><img vspace="5" hspace="5" src="Lab2_01.png" alt=""> <p>O sinal x &eacute; um sinal resultante da soma de 3 sinais sinusoidais de frequ&ecirc;ncias, magnitudes e fases diferentes. Esta soma resulta num sinal que difere dos 3 sinais dos quais este consiste.</p><h2>1c<a name="5"></a></h2><pre class="codeinput">N = 512;
+X = fft(x, N)/N;
+freq = (0:N-1)/N;
+
+figure();
+subplot(2, 1, 1);
+plot(freq, abs(X));
+xlabel(<span class="string">'Frequ&ecirc;ncia [Hz]'</span>);
+ylabel(<span class="string">'Magnitude'</span>);
+title(<span class="string">'Magnitude da DFT de x'</span>);
+
+subplot(2, 1, 2);
+plot(freq, angle(X));
+xlabel(<span class="string">'Frequ&ecirc;ncia [Hz]'</span>);
+ylabel(<span class="string">'Fase'</span>);
+title(<span class="string">'Fase da DFT de x'</span>);
+</pre><img vspace="5" hspace="5" src="Lab2_02.png" alt=""> <p>Analisando o plot da magnitude podemos observar 3 picos principais (em cada meio espectro), que correspondem &agrave;s frequ&ecirc;ncias de cada cosseno que constitui o sinal x. Sabendo em que frequ&ecirc;ncia estes picos ocorrem podemos obter a fase correspondente e assim reconstruir o sinal como faremos na sec&ccedil;&atilde;o seguinte.</p><h2>1d<a name="7"></a></h2><pre class="codeinput">xr = 2.294*cos(2*pi*0.009766*n+1.661) <span class="keyword">...</span>
+    + 0.7867*cos(2*pi*0.01953*n - 2.867) <span class="keyword">...</span>
+    + 1.479*cos(2*pi*0.05078*n + 3.021);
+xr = 2*xr;
+</pre><h2>1e<a name="8"></a></h2><pre class="codeinput">figure()
+plot(n, x);
+hold <span class="string">on</span>;
+plot(n, xr);
+xlim([0, M-1]);
+xlabel(<span class="string">'Tempo'</span>);
+ylabel(<span class="string">'Amplitude'</span>);
+title(<span class="string">'Compara&ccedil;&atilde;o do sinal original e do reconstru&iacute;do'</span>);
+legend(<span class="string">'Sinal Original'</span>, <span class="string">'Sinal Reconstru&iacute;do'</span>);
+</pre><img vspace="5" hspace="5" src="Lab2_03.png" alt=""> <p>Como se pode ver, o sinal reconstru&iacute;do &eacute; semelhante ao sinal original. No entanto como se pode observar nos instantes entre n=60 e n=100 e entre N=460 e n=512, h&aacute; momentos em que o sinal reconstru&iacute;do diverge do original. Isto &eacute; devido ao facto de n&atilde;o estarmos a usar um comprimento da Discrete Fourier Transform grande o suficiente, N = 512. Isto resulta numa falta de resolu&ccedil;&atilde;o e faz com que o pico no plot da magnitude n&atilde;o seja na frequ&ecirc;ncia exatamente igual &agrave; original, causando assim estas diferen&ccedil;as entre o sinal original e reconstru&iacute;do. &Eacute; tamb&eacute;m necess&aacute;rio duplicar a amplitude de cada componente devido ao facto de a magnitude apresentada ser apenas metade da amplitude real. Quando normalizamos a fft para o n&uacute;mero de pontos do sinal consideramos todos os pontos, mas para recriar consider&aacute;mos apenas o lado positivo do espectro. Assim sendo &eacute; necess&aacute;rio multiplicar por 2 para reconstruir o sinal fielmente.</p><h2>1f<a name="10"></a></h2><pre class="codeinput">N = 1024;
+X = fft(x, N)/M;
+freq = (0:N-1)/N;
+
+<span class="comment">%Plot signal spectrum with N = 1024</span>
+figure();
+subplot(2, 1, 1);
+plot(freq, abs(X));
+xlabel(<span class="string">'Frequ&ecirc;ncia [Hz]'</span>);
+ylabel(<span class="string">'Magnitude'</span>);
+title(<span class="string">'Magnitude da DFT de x'</span>);
+
+subplot(2, 1, 2);
+plot(freq, angle(X));
+xlabel(<span class="string">'Frequ&ecirc;ncia [Hz]'</span>);
+ylabel(<span class="string">'Fase'</span>);
+title(<span class="string">'Fase da DFT de x'</span>);
+
+<span class="comment">%Get new reconstructed signal based on the information of the spectrum</span>
+xr = 2.294*cos(2*pi*0.009766*n+1.661) <span class="keyword">...</span>
+    +0.9745*cos(2*pi*0.02051*n + 1.618) <span class="keyword">...</span>
+    + 1.479*cos(2*pi*0.05078*n + 3.021);
+xr = 2*xr;
+
+<span class="comment">%Compare original and reconstructed signals</span>
+figure()
+plot(n, x);
+hold <span class="string">on</span>;
+plot(n, xr);
+xlim([0, M-1]);
+xlabel(<span class="string">'Tempo'</span>);
+ylabel(<span class="string">'Amplitude'</span>);
+title(<span class="string">'Compara&ccedil;&atilde;o do sinal original e do reconstru&iacute;do'</span>);
+legend(<span class="string">'Sinal Original'</span>, <span class="string">'Sinal Reconstru&iacute;do'</span>);
+</pre><img vspace="5" hspace="5" src="Lab2_04.png" alt=""> <img vspace="5" hspace="5" src="Lab2_05.png" alt=""> <p>Comparado o sinal reconstru&iacute;do nesta alinea com o da alinea anterior, pode-se ver que este segue o sinal original mais fielmente. Isto deve-se ao facto de termos usado o dobro do comprimento (N=1024) para a DFT do que o usado anteriormente o que permite que haja uma maior resolu&ccedil;&atilde;o no plot da magnitude e fase da fft. Isto permite que consigamos adquirir informa&ccedil;&atilde;o mais correcta. Quanto maior a resolu&ccedil;&atilde;o mais pr&oacute;xima a frequ&ecirc;ncia do pico no plot de magnitude vai estar da frequ&ecirc;ncia real. Tal como na pergunta anterior &eacute; necess&aacute;rio multiplicar a amplitude obtida atrav&eacute;s da DFT por 2 uma vez que se trata de um espectro bilateral.</p><h2>2a<a name="12"></a></h2><pre class="codeinput">[x, Fs] = audioread(<span class="string">'How_many_roads.wav'</span>);
+soundsc(x, Fs);
+</pre><h2>2b<a name="13"></a></h2><pre class="codeinput"><span class="comment">%Length of the segment we want to obtain</span>
+M = 2048;
+
+<span class="comment">%Sample from which our segment begins</span>
+startingSample = 48500;
+
+segm = x(startingSample:startingSample+M-1);
+</pre><h2>2c<a name="14"></a></h2><pre class="codeinput">N = 2048;
+
+X = fft(segm, N)/N;
+
+freq = (0:N-1)/N;
+
+<span class="comment">%Plot signal spectrum with N = 2048</span>
+figure();
+subplot(2, 1, 1);
+plot(freq, abs(X));
+xlabel(<span class="string">'Frequ&ecirc;ncia [Hz]'</span>);
+ylabel(<span class="string">'Magnitude'</span>);
+title(<span class="string">'Magnitude da DFT de x'</span>);
+
+subplot(2, 1, 2);
+plot(freq, angle(X));
+xlabel(<span class="string">'Frequ&ecirc;ncia [Hz]'</span>);
+ylabel(<span class="string">'Fase'</span>);
+title(<span class="string">'Fase da DFT de x'</span>);
+</pre><img vspace="5" hspace="5" src="Lab2_06.png" alt=""> <h2>2d<a name="15"></a></h2><pre class="codeinput">n = 0:M-1;
+<span class="comment">%Sinal reconstruido</span>
+xr = 0.0092*cos(2*pi*0.00293*n-0.6054) <span class="keyword">...</span>
+    +0.0055*cos(2*pi*0.005859*n - 0.4384) <span class="keyword">...</span>
+    + 0.0037*cos(2*pi*0.008789*n - 2.614);
+xr = xr*2;
+
+<span class="comment">%Compara sinal original e reconstruido</span>
+figure()
+plot(n, segm);
+hold <span class="string">on</span>;
+plot(n, xr);
+xlim([0, M-1]);
+xlabel(<span class="string">'Tempo'</span>);
+ylabel(<span class="string">'Amplitude'</span>);
+title(<span class="string">'Compara&ccedil;&atilde;o do sinal original e do reconstru&iacute;do'</span>);
+legend(<span class="string">'Sinal Original'</span>, <span class="string">'Sinal Reconstru&iacute;do'</span>);
+</pre><img vspace="5" hspace="5" src="Lab2_07.png" alt=""> <p>O que se pode ver comparando o sinal reconstruido com o original &eacute; que estes n&atilde;o s&atilde;o muito semelhantes, ao contr&aacute;rio do que acontecia na primeira pergunta, embora o sinal reconstruido acompanhe a forma do sinal original. Isto sucede uma vez que o sinal original que queremos reconstruir &eacute; um sinal de voz, ou seja &eacute; demasiado complexo para ser reconstruido a partir de apenas 3 sinais sinusoidais.</p><h2>2e<a name="17"></a></h2><pre class="codeinput"><span class="comment">%Indices que correspondam a magnitudes inferiores a este valor s&atilde;o</span>
+<span class="comment">%eliminados.</span>
+S_thres = 10;
+
+X = fft(x(:, 1));
+X_n = X;
+
+<span class="comment">%Magnitude e fase da fft do sinal.</span>
+mgn = abs(X);
+ang = angle(X);
+
+<span class="comment">%Passar a fft por um filtro para s&oacute; guardar os indices que t&ecirc;m magnitude</span>
+<span class="comment">%acima de S_threshold, passar os outros indices para 0</span>
+low_inds = (mgn&lt;=S_thres);
+X_n(low_inds) = 0;
+
+<span class="comment">%Inverter a fft depois de filtrada atrav&eacute;s do comando ifft</span>
+x_r = ifft(X_n);
+
+<span class="comment">%Ouvir o sinal</span>
+soundsc(x_r, Fs);
+
+<span class="comment">%N&uacute;mero de coeficientes que foram eliminados</span>
+coeff_num = sum(low_inds);
+
+<span class="comment">%Quantos indices elimin&aacute;mos</span>
+fprintf(<span class="string">'Eliminated %d coefficients, used %d \n'</span>, coeff_num, length(X)-coeff_num);
+</pre><pre class="codeoutput">Eliminated 202849 coefficients, used 5022 
+</pre><p>Passando a fft por um filtro que preserva apenas os indices correspondentes a magnitudes superiores a um certo threshold e coloca todas as outras entradas a 0, &eacute; poss&iacute;vel perceber quantos coeficientes s&atilde;o necess&aacute;rios para conseguir recriar o sinal original com muito menos coeficientes, conseguindo ainda compreender o seu conteudo. Com um threshold de 10 foi poss&iacute;vel eliminar 202849 coeficientes, tendo usado 5022 coeficientes para recriar o sinal e ainda &eacute; poss&iacute;vel ouvir as palavras do Professor Jorge Marques, ainda que sejam menos nitidas uma vez que h&aacute; uma perda de qualidade por estarmos a usar um n&uacute;mero reduzido de coeficientes.</p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2015a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%   Segundo trabalho de laboratório de PDS
+%                   2020/2021
+%               
+%             Turno de 3ªfeira 14h
+%                 
+%                 Grupo 38
+%             João Silva 90803
+%            Vasco Araújo 90817
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+close all;
+clear;
+
+%% 1a
+%Constants
+M = 512;
+w0 = 5.2* 2*pi/M;
+
+n = 0:M-1;
+
+x = 5*cos(w0*n + 1) + 2*cos(2*w0*n + 2) + 3*cos(5*w0*n + 3);
+%% 1b
+plot(n, x);
+xlabel('Tempo discreto n');
+ylabel('x(n)');
+title('Sinal original');
+xlim([0, M-1]);
+
+%%
+% O sinal x é um sinal resultante da soma de 3 sinais sinusoidais de
+% frequências, magnitudes e fases diferentes. Esta soma resulta num sinal
+% que difere dos 3 sinais dos quais este consiste.
+%% 1c
+N = 512;
+X = fft(x, N)/N;
+freq = (0:N-1)/N;
+
+figure();
+subplot(2, 1, 1);
+plot(freq, abs(X));
+xlabel('Frequência [Hz]');
+ylabel('Magnitude');
+title('Magnitude da DFT de x');
+
+subplot(2, 1, 2);
+plot(freq, angle(X));
+xlabel('Frequência [Hz]');
+ylabel('Fase');
+title('Fase da DFT de x');
+%%
+% Analisando o plot da magnitude podemos observar 3 picos principais (em
+% cada meio espectro), que correspondem às frequências de cada cosseno que
+% constitui o sinal x. Sabendo em que frequência estes picos ocorrem podemos
+% obter a fase correspondente e assim reconstruir o sinal como faremos na
+% secção seguinte.
+%% 1d
+
+xr = 2.294*cos(2*pi*0.009766*n+1.661) ...
+    + 0.7867*cos(2*pi*0.01953*n - 2.867) ... 
+    + 1.479*cos(2*pi*0.05078*n + 3.021);
+xr = 2*xr;
+%% 1e
+
+figure()
+plot(n, x);
+hold on;
+plot(n, xr);
+xlim([0, M-1]);
+xlabel('Tempo');
+ylabel('Amplitude');
+title('Comparação do sinal original e do reconstruído');
+legend('Sinal Original', 'Sinal Reconstruído');
+
+%%
+% Como se pode ver, o sinal reconstruído é semelhante ao sinal original.
+% No entanto como se pode observar nos instantes entre n=60 e n=100 e entre N=460
+% e n=512, há momentos em que o sinal reconstruído diverge do original. Isto
+% é devido ao facto de não estarmos a usar um comprimento da Discrete Fourier
+% Transform grande o suficiente, N = 512. Isto resulta numa falta de resolução
+% e faz com que o pico no plot da magnitude não seja na frequência exatamente
+% igual à original, causando assim estas diferenças entre o sinal original e 
+% reconstruído. É também necessário duplicar a amplitude de cada componente
+% devido ao facto de a magnitude apresentada ser apenas metade da amplitude
+% real. Quando normalizamos a fft para o número de pontos do sinal
+% consideramos todos os pontos, mas para recriar considerámos apenas o lado
+% positivo do espectro. Assim sendo é necessário multiplicar por 2 para
+% reconstruir o sinal fielmente.
+
+%% 1f
+
+N = 1024;
+X = fft(x, N)/M;
+freq = (0:N-1)/N;
+
+%Plot signal spectrum with N = 1024
+figure();
+subplot(2, 1, 1);
+plot(freq, abs(X));
+xlabel('Frequência [Hz]');
+ylabel('Magnitude');
+title('Magnitude da DFT de x');
+
+subplot(2, 1, 2);
+plot(freq, angle(X));
+xlabel('Frequência [Hz]');
+ylabel('Fase');
+title('Fase da DFT de x');
+
+%Get new reconstructed signal based on the information of the spectrum
+xr = 2.294*cos(2*pi*0.009766*n+1.661) ...
+    +0.9745*cos(2*pi*0.02051*n + 1.618) ...
+    + 1.479*cos(2*pi*0.05078*n + 3.021);
+xr = 2*xr;
+
+%Compare original and reconstructed signals
+figure()
+plot(n, x);
+hold on;
+plot(n, xr);
+xlim([0, M-1]);
+xlabel('Tempo');
+ylabel('Amplitude');
+title('Comparação do sinal original e do reconstruído');
+legend('Sinal Original', 'Sinal Reconstruído');
+
+%%
+% Comparado o sinal reconstruído nesta alinea com o da alinea anterior,
+% pode-se ver que este segue o sinal original mais fielmente. Isto deve-se
+% ao facto de termos usado o dobro do comprimento (N=1024) para a DFT do que
+% o usado anteriormente o que permite que haja uma maior resolução no plot
+% da magnitude e fase da fft. Isto permite que consigamos adquirir
+% informação mais correcta. Quanto maior a resolução mais próxima a
+% frequência do pico no plot de magnitude vai estar da frequência real. Tal
+% como na pergunta anterior é necessário multiplicar a amplitude obtida
+% através da DFT por 2 uma vez que se trata de um espectro bilateral.
+%% 2a
+[x, Fs] = audioread('How_many_roads.wav');
+soundsc(x, Fs);
+
+%% 2b
+
+%Length of the segment we want to obtain
+M = 2048;
+
+%Sample from which our segment begins
+startingSample = 48500;
+
+segm = x(startingSample:startingSample+M-1);
+
+%% 2c
+N = 2048;
+
+X = fft(segm, N)/N;
+
+freq = (0:N-1)/N;
+
+%Plot signal spectrum with N = 2048
+figure();
+subplot(2, 1, 1);
+plot(freq, abs(X));
+xlabel('Frequência [Hz]');
+ylabel('Magnitude');
+title('Magnitude da DFT de x');
+
+subplot(2, 1, 2);
+plot(freq, angle(X));
+xlabel('Frequência [Hz]');
+ylabel('Fase');
+title('Fase da DFT de x');
+
+%% 2d
+n = 0:M-1;
+%Sinal reconstruido
+xr = 0.0092*cos(2*pi*0.00293*n-0.6054) ...
+    +0.0055*cos(2*pi*0.005859*n - 0.4384) ...
+    + 0.0037*cos(2*pi*0.008789*n - 2.614);
+xr = xr*2;
+
+%Compara sinal original e reconstruido
+figure()
+plot(n, segm);
+hold on;
+plot(n, xr);
+xlim([0, M-1]);
+xlabel('Tempo');
+ylabel('Amplitude');
+title('Comparação do sinal original e do reconstruído');
+legend('Sinal Original', 'Sinal Reconstruído');
+
+%%
+% O que se pode ver comparando o sinal reconstruido com o original é que
+% estes não são muito semelhantes, ao contrário do que acontecia na primeira
+% pergunta, embora o sinal reconstruido acompanhe a forma do sinal original.
+% Isto sucede uma vez que o sinal original que queremos reconstruir é um 
+% sinal de voz, ou seja é demasiado complexo para ser reconstruido a partir 
+% de apenas 3 sinais sinusoidais.
+%% 2e
+
+%Indices que correspondam a magnitudes inferiores a este valor são
+%eliminados.
+S_thres = 10;
+
+X = fft(x(:, 1));
+X_n = X;
+
+%Magnitude e fase da fft do sinal.
+mgn = abs(X);
+ang = angle(X);
+
+%Passar a fft por um filtro para só guardar os indices que têm magnitude
+%acima de S_threshold, passar os outros indices para 0
+low_inds = (mgn<=S_thres);
+X_n(low_inds) = 0;
+
+%Inverter a fft depois de filtrada através do comando ifft
+x_r = ifft(X_n);
+
+%Ouvir o sinal
+soundsc(x_r, Fs);
+
+%Número de coeficientes que foram eliminados
+coeff_num = sum(low_inds);
+
+%Quantos indices eliminámos
+fprintf('Eliminated %d coefficients, used %d \n', coeff_num, length(X)-coeff_num);
+
+%%
+% Passando a fft por um filtro que preserva apenas os indices
+% correspondentes a magnitudes superiores a um certo threshold e coloca
+% todas as outras entradas a 0, é possível perceber quantos coeficientes são
+% necessários para conseguir recriar o sinal original com muito menos
+% coeficientes, conseguindo ainda compreender o seu conteudo. Com um
+% threshold de 10 foi possível eliminar 202849 coeficientes, tendo usado
+% 5022 coeficientes para recriar o sinal e ainda é possível ouvir as
+% palavras do Professor Jorge Marques, ainda que sejam menos nitidas uma vez
+% que há uma perda de qualidade por estarmos a usar um número reduzido de
+% coeficientes.
+##### SOURCE END #####
+--></body></html>

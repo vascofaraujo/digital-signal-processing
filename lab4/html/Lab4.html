@@ -1,0 +1,514 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>Lab4</title><meta name="generator" content="MATLAB 8.5"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2021-05-25"><meta name="DC.source" content="Lab4.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h2>Contents</h2><div><ul><li><a href="#2">P1</a></li><li><a href="#3">1a</a></li><li><a href="#5">1b</a></li><li><a href="#7">1c</a></li><li><a href="#9">1d</a></li><li><a href="#11">1e</a></li><li><a href="#13">1f</a></li><li><a href="#15">2a</a></li><li><a href="#17">2b</a></li><li><a href="#19">2c</a></li></ul></div><pre class="codeinput"><span class="comment">%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</span>
+<span class="comment">%   Quarto trabalho de laborat&oacute;rio de PDS</span>
+<span class="comment">%                   2020/2021</span>
+<span class="comment">%</span>
+<span class="comment">%             Turno de 3&ordf;feira 14h</span>
+<span class="comment">%</span>
+<span class="comment">%                 Grupo 38</span>
+<span class="comment">%             Jo&atilde;o Silva 90803</span>
+<span class="comment">%            Vasco Ara&uacute;jo 90817</span>
+<span class="comment">%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</span>
+close <span class="string">all</span>;
+clear;
+</pre><h2>P1<a name="2"></a></h2><h2>1a<a name="3"></a></h2><pre class="codeinput">type(<span class="string">'LongTermEstimate'</span>);
+</pre><pre class="codeoutput">
+function [ a ] = LongTermEstimate( x, N )
+%LONGTERMESTIMATE Calcula o par&acirc;metro "a" para o modelo de longa dura&ccedil;&atilde;o
+%   Partindo do principio que o sinal x tem algum tipo de periodicidade com
+%   per&iacute;odo N, consegue-se estimar x(n) sabendo o param&ecirc;tro "a" e x(n-N).
+
+Y = x(N+1:end);
+H = x(1:end-N);
+a = (H'*H)\H'*Y;
+end
+
+</pre><p>Coment&aacute;rio Este &eacute; um problema no qual queremos minimizar norm(Y-H*a)^2, ou seja &eacute; um problema de Least Squares. A solu&ccedil;&atilde;o para a estimativa de "a" &eacute; conhecida e &eacute; dada por a = inv(H'*H)*H'*Y. Assim, para estimar o valor de "a" apenas temos que construir a matriz H e o vetor Y com base no sinal x e no delay N. Analisando a matriz H dada nas aulas te&oacute;ricas pode-se ver que este &eacute; um caso particular do apresentado nos slides, em que em vez de termos acesso aos &uacute;ltimos N elementos para estimar o atual, usa-se apenas x(n-N) para calcular x(n). Assim, Y vai do instante N+1 at&eacute; ao final do sinal (parte de N+1 pois &eacute; o primeiro instante para o qual temos informa&ccedil;&atilde;o do que sucedeu a N instantes atr&aacute;s). A matriz H vai ser apenas um vetor com os valores de x, desde a primeira amostra at&eacute; &agrave; ultima-N amostra, uma vez que esta &eacute; a &uacute;ltima amostra que tem N amostras &agrave; frente, ou seja, &eacute; a &uacute;ltima amostra que vai ser usada para estimar x(n-N), no caso em que n = end (comprimento do vetor x). Para obter a fazemos apenas o c&aacute;lculo matricial.</p><h2>1b<a name="5"></a></h2><pre class="codeinput">N = 96;
+
+<span class="comment">%Faz load do sinal de teste</span>
+load(<span class="string">'energy_train.mat'</span>);
+
+<span class="comment">%Calcula o par&acirc;metro a</span>
+a = LongTermEstimate(x_train, N);
+
+<span class="comment">%Cria&ccedil;&atilde;o da estima&ccedil;&atilde;o</span>
+x_est = a*x_train(1:end-N);
+
+<span class="comment">%Residuo &eacute; o sinal original menos a estimativa</span>
+res = x_train(N+1:end)-x_est;
+
+<span class="comment">%Fazer os plots</span>
+figure();
+hold <span class="string">on</span>;
+
+plot(1:length(x_train), x_train);
+plot(N+1:length(x_train), x_est);
+legend(<span class="string">'Original'</span>, <span class="string">'Estimado'</span>);
+title(<span class="string">'Compara&ccedil;&atilde;o entre o training data e a estima&ccedil;&atilde;o'</span>);
+xlabel(<span class="string">'Amostra'</span>);
+ylabel(<span class="string">'Amplitude'</span>);
+
+figure
+plot(abs(res));
+title(<span class="string">'Residuo'</span>);
+xlabel(<span class="string">'Amostra'</span>);
+ylabel(<span class="string">'Amplitude'</span>);
+
+figure
+hold <span class="string">on</span>
+plot(1:length(x_train), x_train);
+plot(N+1:length(x_train), x_est);
+plot(N+1:length(x_train), abs(res));
+legend(<span class="string">'Original'</span>, <span class="string">'Estimado'</span>, <span class="string">'Res&iacute;duo'</span>);
+title(<span class="string">'Compara&ccedil;&atilde;o entre o training data e a estima&ccedil;&atilde;o com res&iacute;duo'</span>);
+xlabel(<span class="string">'Amostra'</span>);
+ylabel(<span class="string">'Amplitude'</span>);
+</pre><img vspace="5" hspace="5" src="Lab4_01.png" alt=""> <img vspace="5" hspace="5" src="Lab4_02.png" alt=""> <img vspace="5" hspace="5" src="Lab4_03.png" alt=""> <p>Coment&aacute;rio Como se pode observar apenas h&aacute; estimativa a partir da amostra N (96 neste caso), uma vez que &eacute; necess&aacute;rio ter acesso &agrave; amostra (n-N) para estimar o instante n. Observando os plots obtidos conseguimos ver que em geral a estimativa segue a realidade, sendo confirmado pelo facto do valor absoluto dos res&iacute;duos ter uma amplitude reduzida (0.02 a 0.06). No entanto, h&aacute; zonas onde a estimativa n&atilde;o &eacute; boa, o que se reflete na amplitude dos res&iacute;duos. Quando h&aacute; irregularidades no sinal, N amostras &agrave; frente vai haver um erro de estima&ccedil;&atilde;o o que leva a este aumento no res&iacute;duo. Para demonstrar este fen&oacute;meno considera-se por exemplo o tro&ccedil;o do sinal entre a amostra 60 e 70. Este tro&ccedil;o tem um pico que parece n&atilde;o seguir o andamento normal do sinal, e estre pico n&atilde;o aparece no sinal real N amostrar &agrave; frente. No entanto, como a nossa estimativa para o sinal no instante n &eacute; apenas o sinal no instante n-N vezes um coeficiente, a estimativa N amostras &agrave; frente do tro&ccedil;o irregular vai ser tamb&eacute;m um pico, o que causa um aumento na amplitude do res&iacute;duo nesse instante.</p><h2>1c<a name="7"></a></h2><pre class="codeinput">fprintf(<span class="string">'Coeficiente: %f\n'</span>, a);
+fprintf(<span class="string">'Energia do resiudo: %f\n'</span>, sum(res.^2));
+fprintf(<span class="string">'Energia do residuo por amostra %f\n'</span>, sum(res.^2)/length(res));
+</pre><pre class="codeoutput">Coeficiente: 0.980971
+Energia do resiudo: 0.347831
+Energia do residuo por amostra 0.000302
+</pre><p>Coment&aacute;rio Como se pode ver o coeficiente "a" &eacute; bastante pr&oacute;ximo de 1. Isto &eacute; de esperar uma vez que se considerou que o sinal &eacute; periodico, com per&iacute;odo N, querendo dizer que no sinal perfeito x(n) = x(n-N). Como &eacute; dito no enunciado o sinal representa a produ&ccedil;&atilde;o de energia de um painel solar residencial, sendo &oacute;bvio assim que se espera que o sinal tenha valores muito semelhantes desfazados de 1 dia (N=96). A energia do res&iacute;duo &eacute; obtida fazendo a soma do quadrado do sinal, resultando no valor de 0.347831. Dividindo pelo n&uacute;mero de amostras do res&iacute;duo consegue-se obter a energia por amostra (0.000302).</p><h2>1d<a name="9"></a></h2><pre class="codeinput">type(<span class="string">'ShortTermEstimate.m'</span>);
+</pre><pre class="codeoutput">
+function [ a ] = ShortTermEstimate(r, p)
+%SHORTTERMESTIMATE Summary of this function goes here
+%   Detailed explanation goes here
+
+x_ = r(p+1:end);
+H = zeros(length(r)-p, p);
+%Construir a matriz H
+for i=1:p
+    for j=1:length(r)-p
+        H(j, i) = r(p-i+1 + j-1);
+    end
+end
+
+a = (H'*H)\H'*x_;
+end
+
+</pre><p>Coment&aacute;rio O c&aacute;lculo dos parametros &eacute; feito de um modo semelhante ao feito na alinea 1a, sendo que agora n&atilde;o utilizamos apenas a amostra N instantes atr&aacute;s, usando antes as &uacute;ltimas P amostras para estimar a amostra atual do res&iacute;duo. O vetor Y passa a ser assim o sinal r da amostra p+1 at&eacute; &agrave; ultima. A matriz H agora &eacute; constru&iacute;da de maneira a que cada linha possua as amostras necess&aacute;rias para estimar um dado valor de r. Com p = 6, para estimar o instante 7 &eacute; necess&aacute;rio 6 amostras, a linha de H correspondente a n=7 vai ser [x(1) x(2) x(3) x(4) x(5) x(6)]. Constru&iacute;ndo a matriz H deste modo &eacute; poss&iacute;vel depois realizar o mesmo c&aacute;lculo que na primeira alinea, resultando em p coeficientes a partir dos quais conseguimos estimar qualquer instante.</p><h2>1e<a name="11"></a></h2><pre class="codeinput">p = 6;
+a = ShortTermEstimate(res, p);
+res_est = zeros(length(res)-p, 1);
+<span class="keyword">for</span> i=p+1:length(res)-p
+    <span class="keyword">for</span> j=1:p
+        res_est(i-p) = res_est(i-p) + a(j)*res(i-j);
+    <span class="keyword">end</span>
+<span class="keyword">end</span>
+
+<span class="comment">%Fazer os plots</span>
+figure();
+hold <span class="string">on</span>;
+plot(res(p+1:end));
+plot(res_est);
+legend(<span class="string">'Original'</span>, <span class="string">'Estimado'</span>);
+title(<span class="string">'Compara&ccedil;&atilde;o entre o res&iacute;duo original e o estimado'</span>);
+xlabel(<span class="string">'Amostra'</span>);
+ylabel(<span class="string">'Amplitude'</span>);
+
+figure
+hold <span class="string">on</span>;
+plot(x_train(N+1:end));
+plot(x_est+res_est(end-p-1));
+legend(<span class="string">'Original'</span>, <span class="string">'Estimado'</span>);
+title(<span class="string">'Compara&ccedil;&atilde;o entre o training data e a estima&ccedil;&atilde;o com modelo1+modelo2'</span>);
+xlabel(<span class="string">'Amostra'</span>);
+ylabel(<span class="string">'Amplitude'</span>);
+</pre><img vspace="5" hspace="5" src="Lab4_04.png" alt=""> <img vspace="5" hspace="5" src="Lab4_05.png" alt=""> <p>Coment&aacute;rios Analisando a primeira figura consegue-se ver que a estimativa do res&iacute;duo segue o sinal real bem. Na segunda figura consegue-se observar a combina&ccedil;&atilde;o dos dois modelos num s&oacute;, isto &eacute; usa-se a estimativa do res&iacute;duo obtida para melhorar a estimativa do sinal de energia x. Como se pode observar isto resulta numa melhor estimativa do sinal x, ou seja o novo residuo (diferen&ccedil;a entre sinal real e nova estimativa) vai ter uma menor amplitude.</p><h2>1f<a name="13"></a></h2><pre class="codeinput">e = res(p+1:end)-res_est;
+fprintf(<span class="string">'Coeficientes:\n'</span>);
+disp(a');
+fprintf(<span class="string">'Energia do resiudo: %f\n'</span>, sum(e.^2));
+fprintf(<span class="string">'Energia do residuo por amostra %f\n'</span>, sum(e.^2)/length(e));
+</pre><pre class="codeoutput">Coeficientes:
+    0.5993    0.1496   -0.0031    0.2730   -0.1552   -0.0279
+
+Energia do resiudo: 0.124777
+Energia do residuo por amostra 0.000109
+</pre><p>Coment&aacute;rio Como se pode ver, ao contr&aacute;rio do que acontecia com o coeficiente na alinea 1b, os coeficientes que relacionam o sinal com o residuo N amostras &agrave; frente n&atilde;o s&atilde;o todos pr&oacute;ximos de 1. Como vemos tamb&eacute;m, h&aacute; amostras com maior peso que outras, por exemplo a(1) &eacute; muito maior que a(3), o que resulta na amostra r(n-1) tem mais influ&ecirc;ncia na estimativa do que r(n-3). Assim se apenas fosse poss&iacute;vel ter acesso a algumas amostras em vez de 6, poderiam ser descartadas r(n-3) e r(n-5) que a estimativa final n&atilde;o diferia muito uma vez que estes coeficientes est&atilde;o muito pr&oacute;ximos de 0 comparando com os restantes. Quanto &agrave; energia do novo res&iacute;udo, comparando com a do res&iacute;duo original vemos que diminuiu para cerca de um ter&ccedil;o da original, o que faz sentido uma vez que com a combina&ccedil;&atilde;o dos dois modelos se tem uma melhor estimativa do sinal. A energia por amostra obviamente diminui tamb&eacute;m.</p><h2>2a<a name="15"></a></h2><pre class="codeinput">type(<span class="string">'AnomaliesDetector.m'</span>);
+</pre><pre class="codeoutput">
+function [ anomaliesArray ] = AnomaliesDetector(t, p)
+
+%mean absolute deviation
+threshold = mad(t);
+ anomaliesArray = zeros(length(t),1);
+
+for i=1:length(t)
+  difference = t(i) - p(i);
+  if (difference &gt; threshold)
+    anomaliesArray(i) = 1;
+  end
+  
+    
+end
+
+end
+</pre><p>Coment&aacute;rio De modo a detectar anomalias entre o vetor de tempo e as previs&otilde;es passadas necess&aacute;rio computar qual a varia&ccedil;&atilde;o entre os dois. Uma maneira eficaz de detectar essa diferen&ccedil;a &eacute; atrav&eacute;s do desvio m&eacute;dio absoluto, ou seja, computar a diferen&ccedil;a entre a amplitude do vetor de tempo e a previs&atilde;o a cada instante de tempo e, se for maior que o desvio m&eacute;dio absoluto, marcar aquele instante de tempo como uma anomalia.</p><h2>2b<a name="17"></a></h2><pre class="codeinput">load(<span class="string">'energy_train.mat'</span>);
+
+
+N = 96;
+a_long = LongTermEstimate(x_train, N);
+x_est = a_long*x_train(1:end-N);
+
+anomaliesLong = AnomaliesDetector(x_train(N+1:length(x_est)), x_est);
+
+num_long = 0;
+<span class="keyword">for</span> i=1:length(anomaliesLong)
+  <span class="keyword">if</span> anomaliesLong(i) == 1
+    num_long = num_long+1;
+  <span class="keyword">end</span>
+<span class="keyword">end</span>
+
+figure;
+plot(anomaliesLong);
+title(<span class="string">'Anomalias entre training data e estima&ccedil;&atilde;o'</span>);
+xlabel(<span class="string">'Amostra'</span>);
+ylabel(<span class="string">'Anomalia'</span>);
+
+load(<span class="string">'energy_test.mat'</span>);
+
+p = 6;
+res = x_train(N+1:end)-x_est;
+
+a_short = ShortTermEstimate(res, p);
+
+res_est = zeros(length(res)-p, 1);
+<span class="keyword">for</span> i=p+1:length(res)-p
+    <span class="keyword">for</span> j=1:p
+        res_est(i-p) = res_est(i-p) + a_short(j)*res(i-j);
+    <span class="keyword">end</span>
+<span class="keyword">end</span>
+
+anomaliesShort = AnomaliesDetector(res(p+1:length(res_est)), res_est);
+
+num_short= 0;
+<span class="keyword">for</span> i=1:length(anomaliesShort)
+  <span class="keyword">if</span> anomaliesShort(i) == 1
+    num_short = num_short+1;
+  <span class="keyword">end</span>
+<span class="keyword">end</span>
+</pre><img vspace="5" hspace="5" src="Lab4_06.png" alt=""> <p>Coment&aacute;rio V&ecirc;-se claramente uma diferen&ccedil;a entre os dois modelos. Usando o modelo short detectaram-se 116 anomalias enquanto que usando o modelo long apenas se detectaram 18. Isto faz sentido, pois o modelo short apenas usa os dados mais pr&oacute;ximos no tempo enquanto o que faz com o modelo responda mais agressivamente a varia&ccedil;&otilde;es. Isto faz com que, apesar de poder seguir mais fielmente o plot real, fica mais sens&iacute;vel a outliers nos dados e portanto ir&aacute; ter mais anomalias.</p><h2>2c<a name="19"></a></h2><p>Coment&aacute;rio Uma poss&iacute;vel solu&ccedil;&atilde;o seria interpolar os dados com anomalias usando informa&ccedil;&atilde;o do passado.</p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2015a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%   Quarto trabalho de laboratório de PDS
+%                   2020/2021
+%               
+%             Turno de 3ªfeira 14h
+%                 
+%                 Grupo 38
+%             João Silva 90803
+%            Vasco Araújo 90817
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+close all;
+clear;
+%% P1
+%% 1a
+type('LongTermEstimate');
+%% 
+% Comentário
+% Este é um problema no qual queremos minimizar norm(Y-H*a)^2, ou seja é um
+% problema de Least Squares. A solução para a estimativa de "a" é conhecida
+% e é dada por a = inv(H'*H)*H'*Y. Assim, para estimar o valor de "a"
+% apenas temos que construir a matriz H e o vetor Y com base no sinal x e
+% no delay N. Analisando a matriz H dada nas aulas teóricas pode-se ver que
+% este é um caso particular do apresentado nos slides, em que em vez de
+% termos acesso aos últimos N elementos para estimar o atual, usa-se apenas
+% x(n-N) para calcular x(n). Assim, Y vai do instante N+1 até ao final do
+% sinal (parte de N+1 pois é o primeiro instante para o qual temos
+% informação do que sucedeu a N instantes atrás). A matriz H vai ser apenas
+% um vetor com os valores de x, desde a primeira amostra até à ultima-N
+% amostra, uma vez que esta é a última amostra que tem N amostras à frente,
+% ou seja, é a última amostra que vai ser usada para estimar x(n-N), no
+% caso em que n = end (comprimento do vetor x). Para obter a fazemos apenas
+% o cálculo matricial.
+%% 1b
+
+N = 96;
+
+%Faz load do sinal de teste
+load('energy_train.mat');
+
+%Calcula o parâmetro a
+a = LongTermEstimate(x_train, N);
+
+%Criação da estimação
+x_est = a*x_train(1:end-N);
+
+%Residuo é o sinal original menos a estimativa
+res = x_train(N+1:end)-x_est;
+
+%Fazer os plots
+figure();
+hold on;
+
+plot(1:length(x_train), x_train);
+plot(N+1:length(x_train), x_est);
+legend('Original', 'Estimado');
+title('Comparação entre o training data e a estimação');
+xlabel('Amostra');
+ylabel('Amplitude');
+
+figure
+plot(abs(res));
+title('Residuo');
+xlabel('Amostra');
+ylabel('Amplitude');
+
+figure
+hold on
+plot(1:length(x_train), x_train);
+plot(N+1:length(x_train), x_est);
+plot(N+1:length(x_train), abs(res));
+legend('Original', 'Estimado', 'Resíduo');
+title('Comparação entre o training data e a estimação com resíduo');
+xlabel('Amostra');
+ylabel('Amplitude');
+%% 
+% Comentário
+% Como se pode observar apenas há estimativa a partir da amostra N (96
+% neste caso), uma vez que é necessário ter acesso à amostra (n-N) para
+% estimar o instante n.
+% Observando os plots obtidos conseguimos ver que em geral a estimativa
+% segue a realidade, sendo confirmado pelo facto do valor absoluto dos 
+% resíduos ter uma amplitude reduzida (0.02 a 0.06). No entanto, há zonas
+% onde a estimativa não é boa, o que se reflete na amplitude dos resíduos.
+% Quando há irregularidades no sinal, N amostras à frente vai haver um erro
+% de estimação o que leva a este aumento no resíduo. Para demonstrar este
+% fenómeno considera-se por exemplo o troço do sinal entre a amostra 60 e
+% 70. Este troço tem um pico que parece não seguir o andamento normal do
+% sinal, e estre pico não aparece no sinal real N amostrar à frente. No
+% entanto, como a nossa estimativa para o sinal no instante n é apenas o
+% sinal no instante n-N vezes um coeficiente, a estimativa N amostras à
+% frente do troço irregular vai ser também um pico, o que causa um aumento
+% na amplitude do resíduo nesse instante.
+%% 1c
+fprintf('Coeficiente: %f\n', a);
+fprintf('Energia do resiudo: %f\n', sum(res.^2));
+fprintf('Energia do residuo por amostra %f\n', sum(res.^2)/length(res));
+%% 
+% Comentário
+% Como se pode ver o coeficiente "a" é bastante próximo de 1. Isto é de
+% esperar uma vez que se considerou que o sinal é periodico, com período N,
+% querendo dizer que no sinal perfeito x(n) = x(n-N). Como é dito no
+% enunciado o sinal representa a produção de energia de um painel solar
+% residencial, sendo óbvio assim que se espera que o sinal tenha valores
+% muito semelhantes desfazados de 1 dia (N=96).
+% A energia do resíduo é obtida fazendo a soma do quadrado do sinal,
+% resultando no valor de 0.347831. Dividindo pelo número de amostras do
+% resíduo consegue-se obter a energia por amostra (0.000302).
+%% 1d
+type('ShortTermEstimate.m');
+
+%%
+% Comentário
+% O cálculo dos parametros é feito de um modo semelhante ao feito na alinea
+% 1a, sendo que agora não utilizamos apenas a amostra N instantes atrás,
+% usando antes as últimas P amostras para estimar a amostra atual do
+% resíduo. O vetor Y passa a ser assim o sinal r da amostra p+1 até à
+% ultima. A matriz H agora é construída de maneira a que cada linha possua
+% as amostras necessárias para estimar um dado valor de r. Com p = 6, para
+% estimar o instante 7 é necessário 6 amostras, a linha de H correspondente 
+% a n=7 vai ser [x(1) x(2) x(3) x(4) x(5) x(6)]. Construíndo a matriz H
+% deste modo é possível depois realizar o mesmo cálculo que na primeira
+% alinea, resultando em p coeficientes a partir dos quais conseguimos
+% estimar qualquer instante.
+%% 1e
+p = 6;
+a = ShortTermEstimate(res, p);
+res_est = zeros(length(res)-p, 1);
+for i=p+1:length(res)-p
+    for j=1:p
+        res_est(i-p) = res_est(i-p) + a(j)*res(i-j);
+    end
+end
+
+%Fazer os plots
+figure();
+hold on;
+plot(res(p+1:end));
+plot(res_est);
+legend('Original', 'Estimado');
+title('Comparação entre o resíduo original e o estimado');
+xlabel('Amostra');
+ylabel('Amplitude');
+
+figure
+hold on;
+plot(x_train(N+1:end));
+plot(x_est+res_est(end-p-1));
+legend('Original', 'Estimado');
+title('Comparação entre o training data e a estimação com modelo1+modelo2');
+xlabel('Amostra');
+ylabel('Amplitude');
+%%
+% Comentários
+% Analisando a primeira figura consegue-se ver que a estimativa do resíduo
+% segue o sinal real bem. 
+% Na segunda figura consegue-se observar a combinação dos dois modelos num
+% só, isto é usa-se a estimativa do resíduo obtida para melhorar a
+% estimativa do sinal de energia x. Como se pode observar isto resulta numa
+% melhor estimativa do sinal x, ou seja o novo residuo (diferença entre
+% sinal real e nova estimativa) vai ter uma menor amplitude.
+%% 1f
+e = res(p+1:end)-res_est;
+fprintf('Coeficientes:\n');
+disp(a');
+fprintf('Energia do resiudo: %f\n', sum(e.^2));
+fprintf('Energia do residuo por amostra %f\n', sum(e.^2)/length(e));
+%% 
+% Comentário
+% Como se pode ver, ao contrário do que acontecia com o coeficiente na
+% alinea 1b, os coeficientes que relacionam o sinal com o residuo N
+% amostras à frente não são todos próximos de 1. Como vemos também, há
+% amostras com maior peso que outras, por exemplo a(1) é muito maior que
+% a(3), o que resulta na amostra r(n-1) tem mais influência na estimativa
+% do que r(n-3). Assim se apenas fosse possível ter acesso a algumas
+% amostras em vez de 6, poderiam ser descartadas r(n-3) e r(n-5) que a
+% estimativa final não diferia muito uma vez que estes coeficientes estão
+% muito próximos de 0 comparando com os restantes.
+% Quanto à energia do novo resíudo, comparando com a do resíduo original
+% vemos que diminuiu para cerca de um terço da original, o que faz sentido 
+% uma vez que com a combinação dos dois modelos se tem uma melhor
+% estimativa do sinal. A energia por amostra obviamente diminui também.
+
+
+%% 2a
+type('AnomaliesDetector.m');
+
+%%
+% Comentário
+% De modo a detectar anomalias entre o vetor de tempo e as previsões passadas 
+% necessário computar qual a variação entre os dois. Uma maneira eficaz de 
+% detectar essa diferença é através do desvio médio absoluto, ou seja, computar
+% a diferença entre a amplitude do vetor de tempo e a previsão a cada instante 
+% de tempo e, se for maior que o desvio médio absoluto, marcar aquele instante 
+% de tempo como uma anomalia.
+
+%% 2b
+load('energy_train.mat');
+
+
+N = 96;
+a_long = LongTermEstimate(x_train, N);
+x_est = a_long*x_train(1:end-N);
+
+anomaliesLong = AnomaliesDetector(x_train(N+1:length(x_est)), x_est);
+
+num_long = 0;
+for i=1:length(anomaliesLong)
+  if anomaliesLong(i) == 1
+    num_long = num_long+1;
+  end
+end
+
+figure;
+plot(anomaliesLong);
+title('Anomalias entre training data e estimação');
+xlabel('Amostra');
+ylabel('Anomalia');
+
+load('energy_test.mat');
+
+p = 6;
+res = x_train(N+1:end)-x_est;
+
+a_short = ShortTermEstimate(res, p);
+
+res_est = zeros(length(res)-p, 1);
+for i=p+1:length(res)-p
+    for j=1:p
+        res_est(i-p) = res_est(i-p) + a_short(j)*res(i-j);
+    end
+end
+
+anomaliesShort = AnomaliesDetector(res(p+1:length(res_est)), res_est);
+
+num_short= 0;
+for i=1:length(anomaliesShort)
+  if anomaliesShort(i) == 1
+    num_short = num_short+1;
+  end
+end
+
+%%
+% Comentário
+% Vê-se claramente uma diferença entre os dois modelos. Usando o modelo short 
+% detectaram-se 116 anomalias enquanto que usando o modelo long apenas se 
+% detectaram 18. Isto faz sentido, pois o modelo short apenas usa os dados mais
+% próximos no tempo enquanto o que faz com o modelo responda mais agressivamente
+% a variações. Isto faz com que, apesar de poder seguir mais fielmente o plot 
+% real, fica mais sensível a outliers nos dados e portanto irá ter mais anomalias.
+
+%% 2c
+%%
+% Comentário
+% Uma possível solução seria interpolar os dados com anomalias usando informação  
+% do passado.
+##### SOURCE END #####
+--></body></html>

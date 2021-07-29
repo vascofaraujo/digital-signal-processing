@@ -1,0 +1,488 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>Lab5</title><meta name="generator" content="MATLAB 8.5"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2021-06-08"><meta name="DC.source" content="Lab5.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h2>Contents</h2><div><ul><li><a href="#2">1a</a></li><li><a href="#3">1b</a></li><li><a href="#4">1c</a></li><li><a href="#6">1d</a></li><li><a href="#8">2a</a></li><li><a href="#10">2b</a></li><li><a href="#12">2c</a></li></ul></div><pre class="codeinput"><span class="comment">%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</span>
+<span class="comment">%   Quinto trabalho de laborat&oacute;rio de PDS</span>
+<span class="comment">%                   2020/2021</span>
+<span class="comment">%</span>
+<span class="comment">%             Turno de 3&ordf;feira 14h</span>
+<span class="comment">%</span>
+<span class="comment">%                 Grupo 38</span>
+<span class="comment">%             Jo&atilde;o Silva 90803</span>
+<span class="comment">%            Vasco Ara&uacute;jo 90817</span>
+<span class="comment">%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</span>
+close <span class="string">all</span>;
+clear;
+</pre><h2>1a<a name="2"></a></h2><p>Em anexo no pdf est&atilde;o as dedu&ccedil;&otilde;es para cada uma das distribui&ccedil;&otilde;es.</p><h2>1b<a name="3"></a></h2><pre class="codeinput">load(<span class="string">'sar_image.mat'</span>);
+figure;
+imagesc(I);
+<span class="comment">% getrect()</span>
+</pre><img vspace="5" hspace="5" src="Lab5_01.png" alt=""> <h2>1c<a name="4"></a></h2><pre class="codeinput"><span class="comment">%Sec&ccedil;&otilde;es com apenas gelo e com apenas &aacute;gua</span>
+zona_gelo = [1    90    73   395];
+zona_agua = [602     1   203    93];
+I_gelo = imcrop(I, zona_gelo);
+I_agua = imcrop(I, zona_agua);
+
+<span class="comment">%Resize de matriz para vetor</span>
+I_gelo = reshape(I_gelo,1,[]);
+I_agua = reshape(I_agua,1,[]);
+
+<span class="comment">%Calcula os par&acirc;metros para as distribui&ccedil;&otilde;es diferentes</span>
+<span class="comment">%Exponencial</span>
+gelo_exp = mle(I_gelo, <span class="string">'distribution'</span>,<span class="string">'Exponential'</span>);
+agua_exp = mle(I_agua, <span class="string">'distribution'</span>,<span class="string">'Exponential'</span>);
+
+<span class="comment">%Rayleigh</span>
+gelo_ray = mle(I_gelo, <span class="string">'distribution'</span>,<span class="string">'Rayleigh'</span>);
+agua_ray = mle(I_agua, <span class="string">'distribution'</span>,<span class="string">'Rayleigh'</span>);
+
+<span class="comment">%Normal</span>
+gelo_norm = mle(I_gelo, <span class="string">'distribution'</span>,<span class="string">'Normal'</span>);
+agua_norm = mle(I_agua, <span class="string">'distribution'</span>,<span class="string">'Normal'</span>);
+</pre><p>Coment&aacute;rio Usando a fun&ccedil;&atilde;o "mle" do Matlab obtivemos os mesmos resultados do que fazendo as contas com as express&otilde;es obtidas em 1a, como seria de esperar.</p><h2>1d<a name="6"></a></h2><pre class="codeinput"><span class="comment">%&Aacute;gua</span>
+<span class="comment">%plot do histograma</span>
+figure;
+histogram(I_agua, <span class="string">'Normalization'</span>, <span class="string">'pdf'</span>);
+x = 0:1:4*10^4;
+hold <span class="string">on</span>;
+plot(x, exppdf(x, agua_exp),<span class="string">'LineWidth'</span>,2);
+plot(x, raylpdf(x, agua_ray), <span class="string">'LineWidth'</span>,2);
+plot(x, normpdf(x, agua_norm(1), agua_norm(2)), <span class="string">'LineWidth'</span>,2);
+legend(<span class="string">'Real'</span>, <span class="string">'Exponencial'</span>, <span class="string">'Rayleigh'</span>, <span class="string">'Normal'</span>);
+
+figure;
+histogram(I_gelo, <span class="string">'Normalization'</span>, <span class="string">'pdf'</span>);
+x = 0:1:4.5*10^5;
+hold <span class="string">on</span>;
+plot(x, exppdf(x, gelo_exp), <span class="string">'LineWidth'</span>,2);
+plot(x, raylpdf(x, gelo_ray), <span class="string">'LineWidth'</span>,2);
+plot(x, normpdf(x, gelo_norm(1), gelo_norm(2)), <span class="string">'LineWidth'</span>,2);
+legend(<span class="string">'Real'</span>, <span class="string">'Exponencial'</span>, <span class="string">'Rayleigh'</span>, <span class="string">'Normal'</span>);
+</pre><img vspace="5" hspace="5" src="Lab5_02.png" alt=""> <img vspace="5" hspace="5" src="Lab5_03.png" alt=""> <p>Coment&aacute;rio Observando as curvas obtidas com as v&aacute;rias distribui&ccedil;&otilde;es, consegue-se chegar &agrave; conclus&atilde;o que a distribui&ccedil;&atilde;o que melhor descreve este conjunto &eacute; a de Rayleigh.</p><h2>2a<a name="8"></a></h2><pre class="codeinput"><span class="comment">%Using the Rayleigh distribution</span>
+I_segmented = I;
+
+thresh = raylpdf(I, agua_ray) - raylpdf(I, gelo_ray);
+
+I_segmented(thresh&gt;=0) = 0; <span class="comment">%&eacute; agua</span>
+I_segmented(thresh&lt;0) = 1; <span class="comment">%&eacute; gelo</span>
+
+figure;
+imagesc(I);
+hold <span class="string">on</span>;
+imcontour(I_segmented, <span class="string">'r'</span>);
+
+figure;
+x = 0:1:200000;
+plot(x, raylpdf(x, gelo_ray), x, raylpdf(x, agua_ray), <span class="string">'LineWidth'</span>,2);
+title(<span class="string">'Distribui&ccedil;&otilde;es da &aacute;gua e gelo'</span>);
+legend(<span class="string">'Gelo'</span>, <span class="string">'&Aacute;gua'</span>);
+</pre><img vspace="5" hspace="5" src="Lab5_04.png" alt=""> <img vspace="5" hspace="5" src="Lab5_05.png" alt=""> <p>Coment&aacute;rio Vamos agora &agrave; imagem original e para cada pixel verificamos se tem um valor maior com a distribui&ccedil;&atilde;o do gelo ou com a distribui&ccedil;&atilde;o da &aacute;gua. O que for maior assumimos que esse pixel pertence a essa zona. Vemos na imagem o resultado desta opera&ccedil;&atilde;o, em que 0 corresponde a &aacute;gua e 255 corresponde a uma zona de gelo. Fazendo o plot das 2 distribui&ccedil;&otilde;es v&ecirc;-se que a mudan&ccedil;a entre dizer que um dado pixel &eacute; de uma zona de gelo ou de uma zona de &aacute;gua acontece quando esse pixel tem valor de 10000. Abaixo disso dizemos que o pixel &eacute; de uma zona de &aacute;gua, acima dizemos que &eacute; de uma zona de gelo. Como se pode ver as sec&ccedil;&otilde;es de &aacute;gua e gelo est&atilde;o bem definidos, sendo que h&aacute; no entanto bastantes falsos positivos (sec&ccedil;&otilde;es mal divididas).</p><h2>2b<a name="10"></a></h2><pre class="codeinput">kernel = [5,5];
+I_conv = conv2(I,kernel,<span class="string">'same'</span>);
+
+figure;
+imagesc(I_conv);
+
+thresh = raylpdf(I_conv, agua_ray) - raylpdf(I_conv, gelo_ray);
+
+I_conv(thresh&gt;=0) = 0; <span class="comment">%&eacute; agua</span>
+I_conv(thresh&lt;0) = 1; <span class="comment">%&eacute; gelo</span>
+
+
+figure;
+imagesc(I);
+hold <span class="string">on</span>;
+imcontour(I_conv, <span class="string">'r'</span>);
+</pre><img vspace="5" hspace="5" src="Lab5_06.png" alt=""> <img vspace="5" hspace="5" src="Lab5_07.png" alt=""> <p>Coment&aacute;rio Ao passar a imagem por um filtro antes de fazer o mesmo processo que na alinea anterior vemos que muitos dos falsos positivos s&atilde;o eliminados. No entanto, como a imagem cont&eacute;m poucas sec&ccedil;&otilde;es de apenas &aacute;gua, o resultado desta alinea apresenta muito menos zonas, sendo que as zonas delimitadas que apresenta s&atilde;o quase guarantidamente apenas de um tipo (apenas &aacute;gua ou apenas gelo).</p><h2>2c<a name="12"></a></h2><pre class="codeinput">figure;
+subplot(1,2,1);
+imcontour(I_segmented);
+title(<span class="string">'2a'</span>);
+
+subplot(1,2,2);
+imcontour(I_conv);
+title(<span class="string">'2b'</span>);
+
+<span class="comment">%alinea 2a</span>
+correct_2a_agua = 0;
+correct_2a_gelo = 0;
+
+I_gelo = imcrop(I_segmented, zona_gelo);
+I_agua = imcrop(I_segmented, zona_agua);
+
+correct_2a_agua = correct_2a_agua + sum(sum(I_agua==0));
+correct_2a_gelo = correct_2a_gelo + sum(sum(I_gelo==1));
+
+total_a_agua = correct_2a_agua/(size(I_agua,1)*size(I_agua,2));
+total_a_gelo = correct_2a_gelo/(size(I_gelo,1)*size(I_gelo,2));
+
+
+<span class="comment">%alinea 2b</span>
+correct_2b_agua = 0;
+correct_2b_gelo = 0;
+
+I_gelo = imcrop(I_conv, zona_gelo);
+I_agua = imcrop(I_conv, zona_agua);
+
+correct_2b_agua = correct_2b_agua + sum(sum(I_agua==0));
+correct_2b_gelo = correct_2b_gelo + sum(sum(I_gelo==1));
+
+total_b_agua = correct_2b_agua/(size(I_agua,1)*size(I_agua,2));
+total_b_gelo = correct_2b_gelo/(size(I_gelo,1)*size(I_gelo,2));
+
+Acertos = {<span class="string">'&Aacute;gua'</span>; <span class="string">'Gelo'</span>};
+Metodo1 = [total_a_agua; total_a_gelo];
+Metodo2 = [total_b_agua; total_b_gelo];
+
+T = table(Acertos, Metodo1, Metodo2)
+<span class="comment">% disp</span>
+</pre><pre class="codeoutput">
+T = 
+
+    Acertos    Metodo1    Metodo2
+    _______    _______    _______
+
+    '&Aacute;gua'     0.97498     0.0168
+    'Gelo'     0.98289    0.99983
+
+</pre><img vspace="5" hspace="5" src="Lab5_08.png" alt=""> <p>Coment&aacute;rio Como se pode ver pelo rate de escolhas correctas, ambos os m&eacute;todos s&atilde;o bastante bons a estimar as duas zonas da imagem. No entanto o m&eacute;todo da alinea 2a d&aacute; resultados significativamente melhores no rate das escolhas correctas relativas &agrave; zona de &aacute;gua. Isto &eacute; devido ao facto que a zona original escolhida n&atilde;o possu&iacute; apenas &aacute;gua, contendo tamb&eacute;m gelo que &eacute; apenas detetado depois de passar a imagem pelo filtro da alinea 2b. Foi assim escolhida uma nova zona e repetida esta alinea abaixo.</p><pre class="codeinput"><span class="comment">%alinea 2a</span>
+correct_2a_agua = 0;
+correct_2a_gelo = 0;
+
+I_gelo = imcrop(I_segmented, zona_gelo);
+I_agua = imcrop(I_segmented, [262   372    44    78]);
+
+correct_2a_agua = correct_2a_agua + sum(sum(I_agua==0));
+correct_2a_gelo = correct_2a_gelo + sum(sum(I_gelo==1));
+
+total_a_agua = correct_2a_agua/(size(I_agua,1)*size(I_agua,2));
+total_a_gelo = correct_2a_gelo/(size(I_gelo,1)*size(I_gelo,2));
+
+
+<span class="comment">%alinea 2b</span>
+correct_2b_agua = 0;
+correct_2b_gelo = 0;
+
+I_gelo = imcrop(I_conv, zona_gelo);
+I_agua = imcrop(I_conv, [262   372    44    78]);
+
+correct_2b_agua = correct_2b_agua + sum(sum(I_agua==0));
+correct_2b_gelo = correct_2b_gelo + sum(sum(I_gelo==1));
+
+total_b_agua = correct_2b_agua/(size(I_agua,1)*size(I_agua,2));
+total_b_gelo = correct_2b_gelo/(size(I_gelo,1)*size(I_gelo,2));
+
+Acertos = {<span class="string">'&Aacute;gua'</span>; <span class="string">'Gelo'</span>};
+Metodo1 = [total_a_agua; total_a_gelo];
+Metodo2 = [total_b_agua; total_b_gelo];
+
+T = table(Acertos, Metodo1, Metodo2)
+</pre><pre class="codeoutput">
+T = 
+
+    Acertos    Metodo1    Metodo2
+    _______    _______    _______
+
+    '&Aacute;gua'           1    0.97609
+    'Gelo'     0.98289    0.99983
+
+</pre><p>Coment&aacute;rio Como se pode ver, com a zona de &aacute;gua escolhida corretamente os valores obtidos com o m&eacute;todo da alinea b melhora significativamente. Assim determinamos que para o segundo m&eacute;todo &eacute; mais importante obter uma clara divis&atilde;o entre as v&aacute;rias zonas na imagem original. Em geral ambos os m&eacute;todos deram resultados aceit&aacute;veis.</p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2015a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%   Quinto trabalho de laboratório de PDS
+%                   2020/2021
+%               
+%             Turno de 3ªfeira 14h
+%                 
+%                 Grupo 38
+%             João Silva 90803
+%            Vasco Araújo 90817
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+close all;
+clear;
+
+%% 1a
+% Em anexo no pdf estão as deduções para cada uma das distribuições.
+%% 1b
+load('sar_image.mat');
+figure;
+imagesc(I);
+% getrect()
+%% 1c
+
+%Secções com apenas gelo e com apenas água
+zona_gelo = [1    90    73   395];
+zona_agua = [602     1   203    93];
+I_gelo = imcrop(I, zona_gelo);
+I_agua = imcrop(I, zona_agua);
+
+%Resize de matriz para vetor
+I_gelo = reshape(I_gelo,1,[]);
+I_agua = reshape(I_agua,1,[]);
+
+%Calcula os parâmetros para as distribuições diferentes
+%Exponencial
+gelo_exp = mle(I_gelo, 'distribution','Exponential');
+agua_exp = mle(I_agua, 'distribution','Exponential');
+
+%Rayleigh
+gelo_ray = mle(I_gelo, 'distribution','Rayleigh');
+agua_ray = mle(I_agua, 'distribution','Rayleigh');
+
+%Normal
+gelo_norm = mle(I_gelo, 'distribution','Normal');
+agua_norm = mle(I_agua, 'distribution','Normal');
+
+%% 
+% Comentário
+% Usando a função "mle" do Matlab obtivemos os mesmos resultados do que
+% fazendo as contas com as expressões obtidas em 1a, como seria de esperar.
+%% 1d
+
+%Água
+%plot do histograma 
+figure;
+histogram(I_agua, 'Normalization', 'pdf');
+x = 0:1:4*10^4;
+hold on;
+plot(x, exppdf(x, agua_exp),'LineWidth',2);
+plot(x, raylpdf(x, agua_ray), 'LineWidth',2);
+plot(x, normpdf(x, agua_norm(1), agua_norm(2)), 'LineWidth',2);
+legend('Real', 'Exponencial', 'Rayleigh', 'Normal');
+
+figure;
+histogram(I_gelo, 'Normalization', 'pdf');
+x = 0:1:4.5*10^5;
+hold on;
+plot(x, exppdf(x, gelo_exp), 'LineWidth',2);
+plot(x, raylpdf(x, gelo_ray), 'LineWidth',2);
+plot(x, normpdf(x, gelo_norm(1), gelo_norm(2)), 'LineWidth',2);
+legend('Real', 'Exponencial', 'Rayleigh', 'Normal');
+
+%% 
+% Comentário
+% Observando as curvas obtidas com as várias distribuições, consegue-se
+% chegar à conclusão que a distribuição que melhor descreve este conjunto é
+% a de Rayleigh.
+
+%% 2a
+%Using the Rayleigh distribution
+I_segmented = I;
+
+thresh = raylpdf(I, agua_ray) - raylpdf(I, gelo_ray);
+
+I_segmented(thresh>=0) = 0; %é agua
+I_segmented(thresh<0) = 1; %é gelo
+
+figure;
+imagesc(I);
+hold on;
+imcontour(I_segmented, 'r');
+
+figure;
+x = 0:1:200000;
+plot(x, raylpdf(x, gelo_ray), x, raylpdf(x, agua_ray), 'LineWidth',2);
+title('Distribuições da água e gelo');
+legend('Gelo', 'Água');
+%% 
+% Comentário
+% Vamos agora à imagem original e para cada pixel verificamos se tem um
+% valor maior com a distribuição do gelo ou com a distribuição da água. O
+% que for maior assumimos que esse pixel pertence a essa zona. Vemos na
+% imagem o resultado desta operação, em que 0 corresponde a água e 255
+% corresponde a uma zona de gelo. Fazendo o plot das 2 distribuições vê-se
+% que a mudança entre dizer que um dado pixel é de uma zona de gelo ou de
+% uma zona de água acontece quando esse pixel tem valor de 10000. Abaixo
+% disso dizemos que o pixel é de uma zona de água, acima dizemos que é de
+% uma zona de gelo. Como se pode ver as secções de água e gelo estão bem
+% definidos, sendo que há no entanto bastantes falsos positivos (secções
+% mal divididas).
+
+%% 2b
+
+kernel = [5,5];
+I_conv = conv2(I,kernel,'same');
+
+figure;
+imagesc(I_conv);
+
+thresh = raylpdf(I_conv, agua_ray) - raylpdf(I_conv, gelo_ray);
+
+I_conv(thresh>=0) = 0; %é agua
+I_conv(thresh<0) = 1; %é gelo
+
+
+figure;
+imagesc(I);
+hold on;
+imcontour(I_conv, 'r');
+
+%% 
+% Comentário
+% Ao passar a imagem por um filtro antes de fazer o mesmo processo que na
+% alinea anterior vemos que muitos dos falsos positivos são eliminados. No
+% entanto, como a imagem contém poucas secções de apenas água, o resultado
+% desta alinea apresenta muito menos zonas, sendo que as zonas delimitadas
+% que apresenta são quase guarantidamente apenas de um tipo (apenas água ou
+% apenas gelo).
+%% 2c
+
+figure;
+subplot(1,2,1);
+imcontour(I_segmented);
+title('2a');
+
+subplot(1,2,2);
+imcontour(I_conv);
+title('2b');
+
+%alinea 2a
+correct_2a_agua = 0;
+correct_2a_gelo = 0;
+
+I_gelo = imcrop(I_segmented, zona_gelo);
+I_agua = imcrop(I_segmented, zona_agua);
+
+correct_2a_agua = correct_2a_agua + sum(sum(I_agua==0));
+correct_2a_gelo = correct_2a_gelo + sum(sum(I_gelo==1));
+
+total_a_agua = correct_2a_agua/(size(I_agua,1)*size(I_agua,2));
+total_a_gelo = correct_2a_gelo/(size(I_gelo,1)*size(I_gelo,2));
+
+
+%alinea 2b
+correct_2b_agua = 0;
+correct_2b_gelo = 0;
+
+I_gelo = imcrop(I_conv, zona_gelo);
+I_agua = imcrop(I_conv, zona_agua);
+
+correct_2b_agua = correct_2b_agua + sum(sum(I_agua==0));
+correct_2b_gelo = correct_2b_gelo + sum(sum(I_gelo==1));
+
+total_b_agua = correct_2b_agua/(size(I_agua,1)*size(I_agua,2));
+total_b_gelo = correct_2b_gelo/(size(I_gelo,1)*size(I_gelo,2));
+
+Acertos = {'Água'; 'Gelo'};
+Metodo1 = [total_a_agua; total_a_gelo];
+Metodo2 = [total_b_agua; total_b_gelo];
+
+T = table(Acertos, Metodo1, Metodo2)
+% disp
+%% 
+% Comentário
+% Como se pode ver pelo rate de escolhas correctas, ambos os métodos são
+% bastante bons a estimar as duas zonas da imagem. No entanto o método da
+% alinea 2a dá resultados significativamente melhores no rate das escolhas
+% correctas relativas à zona de água. Isto é devido ao facto que a zona
+% original escolhida não possuí apenas água, contendo também gelo que é
+% apenas detetado depois de passar a imagem pelo filtro da alinea 2b. Foi
+% assim escolhida uma nova zona e repetida esta alinea abaixo.
+
+%%
+%alinea 2a
+correct_2a_agua = 0;
+correct_2a_gelo = 0;
+
+I_gelo = imcrop(I_segmented, zona_gelo);
+I_agua = imcrop(I_segmented, [262   372    44    78]);
+
+correct_2a_agua = correct_2a_agua + sum(sum(I_agua==0));
+correct_2a_gelo = correct_2a_gelo + sum(sum(I_gelo==1));
+
+total_a_agua = correct_2a_agua/(size(I_agua,1)*size(I_agua,2));
+total_a_gelo = correct_2a_gelo/(size(I_gelo,1)*size(I_gelo,2));
+
+
+%alinea 2b
+correct_2b_agua = 0;
+correct_2b_gelo = 0;
+
+I_gelo = imcrop(I_conv, zona_gelo);
+I_agua = imcrop(I_conv, [262   372    44    78]);
+
+correct_2b_agua = correct_2b_agua + sum(sum(I_agua==0));
+correct_2b_gelo = correct_2b_gelo + sum(sum(I_gelo==1));
+
+total_b_agua = correct_2b_agua/(size(I_agua,1)*size(I_agua,2));
+total_b_gelo = correct_2b_gelo/(size(I_gelo,1)*size(I_gelo,2));
+
+Acertos = {'Água'; 'Gelo'};
+Metodo1 = [total_a_agua; total_a_gelo];
+Metodo2 = [total_b_agua; total_b_gelo];
+
+T = table(Acertos, Metodo1, Metodo2)
+%% 
+% Comentário
+% Como se pode ver, com a zona de água escolhida corretamente os valores
+% obtidos com o método da alinea b melhora significativamente. Assim
+% determinamos que para o segundo método é mais importante obter uma clara
+% divisão entre as várias zonas na imagem original. Em geral ambos os
+% métodos deram resultados aceitáveis.
+
+
+##### SOURCE END #####
+--></body></html>
